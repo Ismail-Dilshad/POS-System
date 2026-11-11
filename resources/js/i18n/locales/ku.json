@@ -214,7 +214,7 @@
     },
     
     "dashboard": {
-        "title": "بەخێربێیت بۆ سیستەمی فرۆشتن",
+        "title": "بەخێربێیت بۆ Ali Network POS",
         "description": "کارە بازرگانییەکانت لەم داشبۆردە ناوەندییەوە بەڕێوە ببە",
         "total_products": "کۆی بەرهەمەکان",
         "products_description": "بەرهەمەکان لە کۆگاکەتدا",
@@ -414,7 +414,7 @@
         "weight_format": "({{weight}}kg)",
         "card_prefix": "کارت",
         "card_number_format": "کارت #{id}",
-        "default_store_name": "سیستەمی فرۆشتن",
+        "default_store_name": "Ali Network POS",
         "default_phone": "",
         "default_address": "",
         "default_thank_you": "سوپاس بۆ کڕین لەگەڵمان!",
@@ -672,7 +672,7 @@
             "cashier": "کاشیەر",
             "system_name": "",
             "card_name_default": "کارت",
-            "default_store_name": "سیستەمی فرۆشتن",
+            "default_store_name": "Ali Network POS",
             "default_phone": "",
             "default_address": "",
             "default_thank_you": "سوپاس بۆ کڕین لەگەڵمان!",
@@ -1733,7 +1733,7 @@
         }
     },
     "receipt": {
-        "store_name": "سیستەمی فرۆشتن",
+        "store_name": "Ali Network POS",
         "store_phone": "ژ.مۆبایل",
         "store_location": "شوێن",
         "phone_number": "ژمارەی تەلەفۆن",
@@ -1805,7 +1805,7 @@
         "company_name": ""
     },
     "header": {
-        "title": "سیستەمی فرۆشتن",
+        "title": "Ali Network POS",
         "description": "سیستەمی بەڕێوەبردنی بازرگانی",
         "search_placeholder": "گەڕان...",
         "search": "گەڕان",
@@ -2137,11 +2137,11 @@
         "no": "نەخێر"
     },
     "auth_layout": {
-        "market_system": "سیستەمی فرۆشتن",
+        "market_system": "Ali Network POS",
         "business_system": "سیستەمی بازرگانی",
         "welcome_back": "بەخێربێیتەوە",
         "sign_in_description": "چوونە ژوورەوە بۆ هەژمارەکەت",
-        "logo_alt": "سیستەمی فرۆشتن"
+        "logo_alt": "Ali Network POS"
     },
     "error_pages": {
         "head": {

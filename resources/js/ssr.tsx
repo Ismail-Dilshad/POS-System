@@ -6,8 +6,8 @@ import type { ComponentType, ReactElement } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import en from './i18n/locales/en.json';
 
-const fallbackAppName = (en.auth_layout?.market_system as string) || 'POS System';
-const appName = import.meta.env.VITE_APP_NAME || fallbackAppName;
+const fallbackAppName = (en.auth_layout?.market_system as string) || 'Ali Network POS';
+const appName = import.meta.env.VITE_APP_DISPLAY_NAME || fallbackAppName;
 
 createServer(async (page) => {
     return createInertiaApp({

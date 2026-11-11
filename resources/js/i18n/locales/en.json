@@ -53,7 +53,7 @@
         "forgot_password": "Forgot your password?",
         "create_account": "Don't have an account?",
         "sign_up": "Sign up",
-        "welcome_message": "Welcome to POS System",
+        "welcome_message": "Welcome to Ali Network POS",
         "business_system": "Business System",
         "login_form": {
             "title": "Sign In to Your Account",
@@ -107,9 +107,9 @@
             "session_restored": "Your session has been restored"
         },
         "branding": {
-            "app_name": "POS System",
+            "app_name": "Ali Network POS",
             "app_tagline": "Business System",
-            "welcome_title": "Welcome to POS System",
+            "welcome_title": "Welcome to Ali Network POS",
             "welcome_subtitle": "Your comprehensive business management solution",
             "features": {
                 "pos": "Point of Sale",
@@ -189,7 +189,7 @@
         "toggle_sidebar": "Toggle Sidebar"
     },
     "dashboard": {
-        "title": "Welcome to POS System",
+        "title": "Welcome to Ali Network POS",
         "description": "Manage your retail operations from this central dashboard",
         "total_products": "Total Products",
         "products_description": "Products in your inventory",
@@ -389,7 +389,7 @@
         "weight_format": "({weight}kg)",
         "card_prefix": "Card",
         "card_number_format": "Card #{id}",
-        "default_store_name": "POS System",
+        "default_store_name": "Ali Network POS",
         "default_phone": "",
         "default_address": "",
         "default_thank_you": "Thank you for shopping with us!",
@@ -632,7 +632,7 @@
             "cashier": "Cashier",
             "system_name": "",
             "card_name_default": "Card",
-            "default_store_name": "POS System",
+            "default_store_name": "Ali Network POS",
             "default_phone": "",
             "default_address": "",
             "default_thank_you": "Thank you for shopping with us!",
@@ -1686,7 +1686,7 @@
         }
     },
     "receipt": {
-        "store_name": "POS System",
+        "store_name": "Ali Network POS",
         "store_phone": "Phone",
         "store_location": "Location",
         "phone_number": "Phone Number",
@@ -1758,7 +1758,7 @@
         "company_name": ""
     },
     "header": {
-        "title": "POS System",
+        "title": "Ali Network POS",
         "description": "Business Management System",
         "search_placeholder": "Search...",
         "search": "Search",
@@ -2090,11 +2090,11 @@
         "no": "No"
     },
     "auth_layout": {
-        "market_system": "POS System",
+        "market_system": "Ali Network POS",
         "business_system": "Business System",
         "welcome_back": "Welcome Back",
-        "sign_in_description": "Sign in to your POS System account",
-        "logo_alt": "POS System"
+        "sign_in_description": "Sign in to your Ali Network POS account",
+        "logo_alt": "Ali Network POS"
     },
     "error_pages": {
         "head": {

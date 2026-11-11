@@ -40,11 +40,11 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'POS System') }}</title>
+        <title inertia>{{ config('app.display_name', 'Ali Network POS') }}</title>
 
-    <link rel="icon" href="{{ asset('favicon.svg') }}" type="image/svg+xml">
-    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
-    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}">
+    <link rel="icon" href="{{ asset('favicon.png') }}?v=alinetwork" type="image/png">
+    <link rel="icon" href="{{ asset('favicon.ico') }}?v=alinetwork" sizes="any">
+    <link rel="apple-touch-icon" href="{{ asset('apple-touch-icon.png') }}?v=alinetwork">
     
     {{-- PWA Manifest --}}
     <link rel="manifest" href="{{ asset('build/manifest.webmanifest') }}">

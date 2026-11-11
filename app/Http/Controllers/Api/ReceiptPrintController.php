@@ -203,7 +203,7 @@ class ReceiptPrintController extends Controller
             'chunkDiscount' => $chunkDiscount,
             'chunkTotal' => $chunkTotal,
             'header' => $isFirstChunk ? [
-                'storeName' => $receiptData['storeName'] ?? config('app.name', 'POS System'),
+                'storeName' => $receiptData['storeName'] ?? config('app.display_name', 'Ali Network POS'),
                 'cashier' => $receiptData['cashier'] ?? 'Cashier',
                 'date' => now()->format('Y/m/d H:i'),
                 'transactionNumber' => $receiptData['transactionNumber'] ?? '',

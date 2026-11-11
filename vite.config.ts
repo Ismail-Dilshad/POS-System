@@ -54,10 +54,10 @@ export default defineConfig(({ mode }) => {
         }),
         VitePWA({
             registerType: 'autoUpdate',
-            includeAssets: ['favicon.svg', 'favicon.ico', 'apple-touch-icon.png', 'masked-icon.svg'],
+            includeAssets: ['favicon.png', 'favicon.ico', 'apple-touch-icon.png', 'images/alinetwork.png'],
             manifest: {
-                name: 'POS System',
-                short_name: 'POS',
+                name: 'Ali Network POS',
+                short_name: 'Ali POS',
                 description: 'Point of sale and inventory management system',
                 theme_color: '#1F3F3F',
                 background_color: '#ffffff',
@@ -91,7 +91,7 @@ export default defineConfig(({ mode }) => {
                         purpose: 'any'
                     },
                     {
-                        src: '/pwa-512x512.png',
+                        src: '/pwa-maskable-512x512.png',
                         sizes: '512x512',
                         type: 'image/png',
                         purpose: 'maskable'

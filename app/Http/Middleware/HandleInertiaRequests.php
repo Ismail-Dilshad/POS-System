@@ -40,7 +40,7 @@ class HandleInertiaRequests extends Middleware
 
         return [
             ...parent::share($request),
-            'name' => config('app.name'),
+            'name' => config('app.display_name'),
             'portal_role' => $request->attributes->get('portal', 'admin'),
             'quote' => ['message' => trim($message), 'author' => trim($author)],
             'auth' => [

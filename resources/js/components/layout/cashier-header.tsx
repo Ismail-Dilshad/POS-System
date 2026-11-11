@@ -1,3 +1,4 @@
+import AppLogoIcon from '@/components/layout/app-logo-icon';
 import { CashierShortcutsDialog } from '@/components/layout/cashier-shortcuts-dialog';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
@@ -28,7 +29,7 @@ export function CashierHeader() {
           }
         | undefined;
 
-    const marketName = t('auth_layout.market_system') || 'POS System';
+    const marketName = t('auth_layout.market_system') || 'Ali Network POS';
     const displayName = user?.full_name ?? t('app_header.fallback_user');
     const roleLabel = user?.role
         ? t(`roles.${user.role}`, { defaultValue: user.role })
@@ -53,8 +54,8 @@ export function CashierHeader() {
             <div className="flex h-16 w-full items-center justify-between px-4">
                 {/* Left Section - Logo and Market Name */}
                 <div className="flex items-center gap-3 text-lg font-semibold text-foreground">
-                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[#1F3F3F] shadow-lg">
-                        <img src="/favicon.svg" alt={marketName} className="h-6 w-6" />
+                    <span className="inline-flex h-10 w-10 items-center justify-center rounded-full shadow-lg">
+                        <AppLogoIcon alt={marketName} className="size-10" />
                     </span>
                     <span className="hidden sm:inline-block">{marketName}</span>
                 </div>

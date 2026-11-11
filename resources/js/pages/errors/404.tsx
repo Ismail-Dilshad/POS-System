@@ -46,7 +46,7 @@ export default function NotFound() {
                                     href={home.url()}
                                     className="flex items-center gap-3 font-medium text-[#4A6CF7] dark:text-white"
                                 >
-                                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-[#1F3F3F] shadow-lg">
+                                    <div className="flex h-12 w-12 items-center justify-center rounded-full shadow-lg">
                                         <AppLogoIcon className="size-8 fill-current text-white" />
                                     </div>
                                     <div className="text-left">
@@ -63,11 +63,10 @@ export default function NotFound() {
                             <Card className="hover:shadow-3xl rounded-3xl border-0 bg-white/95 shadow-2xl ring-1 ring-[#4A6CF7]/20 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] dark:bg-[#1d1f20]/95 dark:ring-[#4A6CF7]/40 dark:shadow-[0_25px_50px_-12px_rgba(0,0,0,0.8)] dark:backdrop-blur-xl">
                                 <CardHeader className="px-6 pt-6 pb-2 text-center">
                                     <div className="flex flex-col items-center justify-center">
-                                        <div className="flex h-16 w-16 items-center justify-center rounded-xl bg-[#1F3F3F] shadow-lg">
-                                            <img
-                                                src="/favicon.svg"
+                                        <div className="flex h-16 w-16 items-center justify-center rounded-full shadow-lg">
+                                            <AppLogoIcon
                                                 alt={t('auth_layout.logo_alt')}
-                                                className="h-10 w-10"
+                                                className="size-16"
                                             />
                                         </div>
                                     </div>

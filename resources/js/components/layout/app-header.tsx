@@ -25,7 +25,7 @@ export function AppHeader({ breadcrumbs }: AppHeaderProps) {
           }
         | undefined;
 
-    const marketName = t('auth_layout.market_system') || 'Market System';
+    const marketName = t('auth_layout.market_system') || 'Ali Network POS';
     const displayName = user?.full_name ?? t('app_header.fallback_user');
     const roleLabel = user?.role
         ? t(`roles.${user.role}`, { defaultValue: user.role })
@@ -41,7 +41,7 @@ export function AppHeader({ breadcrumbs }: AppHeaderProps) {
                     className="flex items-center gap-3 text-lg font-semibold text-foreground"
                 >
                     <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary">
-                        <AppLogoIcon className="h-6 w-6" />
+                        <AppLogoIcon className="size-10" />
                     </span>
                     <span className="hidden sm:inline-block">{marketName}</span>
                 </Link>

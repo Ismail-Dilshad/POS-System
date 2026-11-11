@@ -12,8 +12,8 @@ import en from './i18n/locales/en.json';
 // @ts-expect-error - PWA register is a virtual module
 import { registerSW } from 'virtual:pwa-register';
 
-const fallbackAppName = (en.auth_layout?.market_system as string) || 'POS System';
-const appName = import.meta.env.VITE_APP_NAME || fallbackAppName;
+const fallbackAppName = (en.auth_layout?.market_system as string) || 'Ali Network POS';
+const appName = import.meta.env.VITE_APP_DISPLAY_NAME || fallbackAppName;
 
 document.addEventListener('inertia:success', (event) => {
     const { page } = (event as CustomEvent<{ page: { props: Record<string, unknown> } }>).detail;

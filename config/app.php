@@ -15,6 +15,8 @@ return [
 
     'name' => env('APP_NAME', 'POS System'),
 
+    'display_name' => env('APP_DISPLAY_NAME', 'Ali Network POS'),
+
 
 
     /*

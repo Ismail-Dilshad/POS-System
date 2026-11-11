@@ -1,3 +1,4 @@
+import AppLogoIcon from '@/components/layout/app-logo-icon';
 import { useTranslation } from '@/hooks/use-translation';
 
 export default function AppLogo() {
@@ -5,11 +6,10 @@ export default function AppLogo() {
 
     return (
         <>
-            <div className="flex aspect-square size-8 items-center justify-center rounded-md bg-[#1F3F3F] shadow-lg">
-                <img 
-                    src="/favicon.svg" 
-                    alt={t('auth_layout.logo_alt')} 
-                    className="h-5 w-5"
+            <div className="flex aspect-square size-8 items-center justify-center rounded-full shadow-lg">
+                <AppLogoIcon
+                    alt={t('auth_layout.logo_alt')}
+                    className="size-8"
                 />
             </div>
             <div className="ml-1 grid flex-1 text-left text-sm">
