@@ -1,0 +1,199 @@
+/* Tailwind CSS Configuration */
+@import './tailwind-config.css';
+
+/* Fonts */
+@import './fonts.css';
+
+/* Inventory Page Styles */
+@import './inventory-styles.css';
+
+:root {
+    /* Custom Color Palette - Light Mode - Clean System */
+    --background: #fafafa; /* Light gray background */
+    --foreground: #1d1f20; /* Dark text */
+    --card: #ffffff; /* White components */
+    --card-foreground: #1d1f20; /* Dark text on cards */
+    --popover: #ffffff; /* White popovers */
+    --popover-foreground: #1d1f20; /* Dark text on popovers */
+    --primary: #4A6CF7; /* Primary blue #4A6CF7 */
+    --primary-foreground: #ffffff; /* White text on primary */
+    --secondary: #f1f5f9; /* Light gray secondary */
+    --secondary-foreground: #1d1f20; /* Dark text on secondary */
+    --muted: #f1f5f9; /* Light gray muted */
+    --muted-foreground: #64748b; /* Gray muted text */
+    --accent: #f1f5f9; /* Light gray accent */
+    --accent-foreground: #1d1f20; /* Dark text on accent */
+    --destructive: #ef4444; /* Red for destructive actions */
+    --destructive-foreground: #ffffff; /* White text on destructive */
+    --border: #e2e8f0; /* Light gray borders */
+    --input: #ffffff; /* White input background */
+    --input-border: #e2e8f0; /* Light gray input borders */
+    --ring: #4A6CF7; /* Primary blue focus rings */
+    --chart-1: #4A6CF7; /* Primary blue #4A6CF7 */
+    --chart-2: #10b981; /* Green for charts */
+    --chart-3: #f59e0b; /* Amber for charts */
+    --chart-4: #ef4444; /* Red for charts */
+    --chart-5: #8b5cf6; /* Purple for charts */
+    --radius: 0.75rem;
+    --sidebar: #ffffff; /* White sidebar */
+    --sidebar-foreground: #1d1f20; /* Dark sidebar text */
+    --sidebar-primary: #4A6CF7; /* Primary blue for sidebar */
+    --sidebar-primary-foreground: #ffffff; /* White text on sidebar primary */
+    --sidebar-accent: #f1f5f9; /* Light gray sidebar accent */
+    --sidebar-accent-foreground: #1d1f20; /* Dark text on sidebar accent */
+    --sidebar-border: #e2e8f0; /* Light gray sidebar borders */
+    --sidebar-ring: #4A6CF7; /* Primary blue for sidebar focus */
+}
+
+.dark {
+    /* Custom Color Palette - Dark Mode - Clean System */
+    --background: #1d1f20; /* Shark background #1d1f20 */
+    --foreground: #ffffff; /* White text */
+    --card: #212324; /* Shark card background #212324 */
+    --card-foreground: #ffffff; /* White text on cards */
+    --popover: #212324; /* Shark popover background #212324 */
+    --popover-foreground: #ffffff; /* White text on popovers */
+    --primary: #4A6CF7; /* Primary blue #4A6CF7 */
+    --primary-foreground: #ffffff; /* White text on primary */
+    --secondary: #374151; /* Dark gray secondary */
+    --secondary-foreground: #ffffff; /* White text on secondary */
+    --muted: #374151; /* Dark gray muted */
+    --muted-foreground: #9ca3af; /* Gray muted text */
+    --accent: #374151; /* Dark gray accent */
+    --accent-foreground: #ffffff; /* White text on accent */
+    --destructive: #ef4444; /* Red for destructive actions */
+    --destructive-foreground: #ffffff; /* White text on destructive */
+    --border: #374151; /* Dark gray borders */
+    --input: #212324; /* Shark input background #212324 */
+    --input-border: #374151; /* Dark gray input borders */
+    --ring: #4A6CF7; /* Primary blue focus rings */
+    --chart-1: #4A6CF7; /* Primary blue #4A6CF7 */
+    --chart-2: #10b981; /* Green for charts */
+    --chart-3: #f59e0b; /* Amber for charts */
+    --chart-4: #ef4444; /* Red for charts */
+    --chart-5: #8b5cf6; /* Purple for charts */
+    --sidebar: #1d1f20; /* Shark sidebar background #1d1f20 */
+    --sidebar-foreground: #ffffff; /* White sidebar text */
+    --sidebar-primary: #4A6CF7; /* Primary blue for sidebar */
+    --sidebar-primary-foreground: #ffffff; /* White text on sidebar primary */
+    --sidebar-accent: #212324; /* Shark sidebar accent #212324 */
+    --sidebar-accent-foreground: #ffffff; /* White text on sidebar accent */
+    --sidebar-border: #374151; /* Dark gray sidebar borders */
+    --sidebar-ring: #4A6CF7; /* Primary blue for sidebar focus */
+}
+
+/* Base styles without @apply */
+* {
+    border-color: var(--border); /* Use theme border color */
+}
+
+html,
+body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family:
+        'Rabar', 'KurdishFont',
+        ui-sans-serif, system-ui, -apple-system, 'Segoe UI', 'Noto Sans',
+        'Helvetica Neue', Arial, 'Apple Color Emoji', 'Segoe UI Emoji',
+        'Segoe UI Symbol', 'Noto Color Emoji';
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Removed RTL-specific font scoping per request */
+
+/* Receipt print HTML uses inline CSS already; this keeps app UI stable */
+
+/* Market System Theme Enhancements - Clean System */
+.btn-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: color-mix(in srgb, var(--accent) 80%, transparent);
+}
+
+.btn-secondary {
+    background-color: var(--secondary);
+    color: var(--secondary-foreground);
+    transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: color-mix(in srgb, var(--secondary) 80%, transparent);
+}
+
+.card-enhanced {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    box-shadow:
+        0 4px 6px -1px rgb(0 0 0 / 0.1),
+        0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: box-shadow 0.2s;
+}
+
+.card-enhanced:hover {
+    box-shadow:
+        0 10px 15px -3px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.sidebar-enhanced {
+    background-color: var(--sidebar);
+    border: 1px solid var(--sidebar-border);
+}
+
+/* Focus states with clean theme */
+.focus-telegram:focus {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+/* Hover effects with clean theme */
+.hover-telegram:hover {
+    background-color: color-mix(in srgb, var(--accent) 50%, transparent);
+    border-color: var(--border);
+}
+
+/* Global cursor pointer for interactive elements */
+button:not(:disabled),
+[role='button']:not([aria-disabled='true']),
+input[type='checkbox'],
+input[type='radio'],
+select,
+a,
+[data-slot='button'],
+[data-slot='dropdown-menu-trigger'],
+[data-slot='select-trigger'],
+[data-slot='checkbox'],
+[data-slot='toggle'] {
+    cursor: pointer;
+}
+
+/* Disabled elements should not have pointer cursor */
+button:disabled,
+[role='button'][aria-disabled='true'],
+input:disabled,
+select:disabled,
+[data-disabled='true'] {
+    cursor: not-allowed;
+}
+
+/* Delete modal pulse animation delays */
+.animation-delay-300 {
+    animation-delay: 300ms;
+}
+
+/* Modern typing animation with React component */
+@keyframes blink {
+    0%,
+    50% {
+        opacity: 1;
+    }
+    51%,
+    100% {
+        opacity: 0;
+    }
+}

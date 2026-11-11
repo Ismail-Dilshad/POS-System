@@ -1,0 +1,23 @@
+/* Kurdish Font Face Declarations - Robust, Vite/Laravel friendly */
+@font-face {
+    font-family: 'Rabar';
+    src: url('/fonts/Rabar_021.woff2') format('woff2'),
+         url('/fonts/Rabar_021.woff') format('woff'),
+         url('/fonts/Rabar_021.ttf') format('truetype'),
+         url('/fonts/Rabar_021.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Backwards-compat alias for existing references */
+@font-face {
+    font-family: 'KurdishFont';
+    src: url('/fonts/Rabar_021.woff2') format('woff2'),
+         url('/fonts/Rabar_021.woff') format('woff'),
+         url('/fonts/Rabar_021.ttf') format('truetype'),
+         url('/fonts/Rabar_021.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}

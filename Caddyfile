@@ -1,0 +1,15 @@
+# Add this site block to your server's active Caddy configuration.
+# Change the root and PHP socket if your server uses different paths.
+kurduinotech.com {
+    root * /var/www/pos-system/public
+    encode zstd gzip
+    php_fastcgi unix//run/php/php8.3-fpm.sock
+    file_server
+
+    header {
+        X-Content-Type-Options nosniff
+        X-Frame-Options SAMEORIGIN
+        Referrer-Policy strict-origin-when-cross-origin
+        -Server
+    }
+}
