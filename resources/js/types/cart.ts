@@ -4,6 +4,8 @@
  */
 
 export interface CartItem {
+    cost_price?: number | null;
+    priceOverridden?: boolean;
     image_url?: string | null;
     id: string;
     barcode: string;
@@ -34,6 +36,7 @@ export interface CartItem {
 
     // Pre-built transaction item (complete, ready to send - zero-delay checkout)
     transactionItem?: {
+        price_overridden?: boolean;
         product_id?: number;
         card_id?: number;
         scale_product_id?: number;

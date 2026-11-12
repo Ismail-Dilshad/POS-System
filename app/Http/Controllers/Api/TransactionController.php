@@ -504,6 +504,7 @@ class TransactionController extends Controller
             'items.*.barcode' => 'required|string',
             'items.*.name' => 'required|string',
             'items.*.price' => 'required|numeric|min:0',
+            'items.*.price_overridden' => 'sometimes|boolean',
             'items.*.quantity' => 'nullable|integer|min:1',
             'items.*.weight' => 'nullable|numeric|min:0',
             'items.*.total' => 'required|numeric|min:0',
@@ -534,19 +535,19 @@ class TransactionController extends Controller
             $scaleProductIds = collect($request->items)->pluck('scale_product_id')->filter()->unique()->values()->toArray();
             $cardIds = collect($request->items)->pluck('card_id')->filter()->unique()->values()->toArray();
 
-            $products = Product::select('id', 'name', 'barcode', 'stock', 'cost_price', 'category_id', 'supplier_id')
+            $products = Product::select('id', 'name', 'barcode', 'stock', 'cost_price', 'sell_price', 'per_carton', 'carton_price', 'category_id', 'supplier_id')
                 ->with(['category:id,name', 'supplier:id,name'])
                 ->whereIn('id', $productIds)
                 ->get()
                 ->keyBy('id');
             
-            $scaleProducts = ScaleProduct::select('id', 'name', 'scale_id', 'plu', 'stock', 'cost_price', 'category_id', 'supplier_id')
+            $scaleProducts = ScaleProduct::select('id', 'name', 'scale_id', 'plu', 'stock', 'cost_price', 'sell_price', 'category_id', 'supplier_id')
                 ->with(['category:id,name', 'supplier:id,name'])
                 ->whereIn('id', $scaleProductIds)
                 ->get()
                 ->keyBy('id');
             
-            $cards = \App\Models\Card::select('id', 'name_card_id', 'cost_price')
+            $cards = \App\Models\Card::select('id', 'name_card_id', 'cost_price', 'sell_price')
                 ->with(['nameCard:id,name'])
                 ->whereIn('id', $cardIds)
                 ->get()
@@ -559,6 +560,19 @@ class TransactionController extends Controller
                     'success' => false,
                     'message' => $stockValidation['message'],
                     'details' => $stockValidation['details'] ?? null,
+                ], 422);
+            }
+
+            $priceErrors = (new \App\Services\SalePriceValidator)->validate(
+                $request->items, $products, $scaleProducts, $cards,
+                (float) ($request->discount ?? 0), (float) $request->total_amount,
+            );
+            if ($priceErrors) {
+                DB::rollBack();
+                return response()->json([
+                    'success' => false,
+                    'message' => array_values($priceErrors)[0][0],
+                    'errors' => $priceErrors,
                 ], 422);
             }
 

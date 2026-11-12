@@ -41,6 +41,7 @@ class PosController extends Controller
                     'c' => $product['per_carton'] ?? null, // per_carton
                     'r' => $product['carton_price'] ?? null, // carton_price
                     'm' => $product['image_url'] ?? null, // image URL
+                    'o' => $product['cost_price'] ?? null, // cost price
                 ];
             }, $allProducts);
             

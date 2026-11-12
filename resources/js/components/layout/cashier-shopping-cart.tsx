@@ -1,6 +1,7 @@
 import { forwardRef, useImperativeHandle, useMemo, useRef, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { ItemThumbnail } from '@/components/layout/item-thumbnail';
+import { CartPriceEditor } from '@/components/layout/cart-price-editor';
 import { Input } from '@/components/ui/input';
 import { Kbd } from '@/components/ui/kbd';
 import { useTranslation } from '@/hooks/use-translation';
@@ -26,6 +27,7 @@ import {
 } from 'lucide-react';
 
 interface CashierShoppingCartProps {
+    onUpdatePrice?: (itemId: string, price: number) => string | null;
     items: CartItem[];
     discount: number;
     discountEnabled?: boolean;
@@ -99,6 +101,7 @@ export const CashierShoppingCart = forwardRef<
             onClearCart,
             onRemoveItem,
             onUpdateQuantity,
+            onUpdatePrice,
             onHold,
             onRecall,
             onClearHold,
@@ -555,13 +558,8 @@ export const CashierShoppingCart = forwardRef<
 
                                         {/* Price and Total */}
                                         <div className="text-right min-w-[80px] mt-4">
-                                            <p className="text-xs text-muted-foreground whitespace-nowrap">
-                                                {item.isScaleProduct
-                                                    ? `${formatCurrency(unitPrice)}/${t('point_of_sale.kg') || 'kg'}`
-                                                    : item.isCartonMode
-                                                        ? `${t('product.carton_price') || 'Carton Price'}: ${formatCurrency(priceDisplayValue)}`
-                                                        : `${t('product.sell_price') || 'Sell Price'}: ${formatCurrency(priceDisplayValue)}`}
-                                            </p>
+                                            <CartPriceEditor item={item} onChange={onUpdatePrice} />
+                                            {item.isCartonMode && <p className="text-xs text-muted-foreground">{t('product.carton_price')}: {formatCurrency(priceDisplayValue)}</p>}
                                             <p className="text-base font-bold text-primary whitespace-nowrap">
                                                 {formatCurrency(item.total)}
                                             </p>

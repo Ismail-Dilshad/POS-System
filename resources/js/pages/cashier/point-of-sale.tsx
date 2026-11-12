@@ -1,3 +1,5 @@
+import { cartPriceIssue, withCartPrice } from '@/lib/cart-pricing';
+import { formatIQD } from '@/lib/currency';
 import { getItemImageUrl } from '@/lib/item-image';
 import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import CashierLayout from '@/layouts/cashier/cashier-layout';
@@ -433,6 +435,7 @@ export default function CashierPointOfSalePage() {
                 type: 'product',
                 name: product.name,
                 image_url: product.image_url ?? null,
+                cost_price: product.cost_price === null || product.cost_price === undefined ? null : Number(product.cost_price),
                 barcode,
                 secondary_barcode: product.secondary_barcode || undefined,
                 sell_price:
@@ -776,6 +779,7 @@ export default function CashierPointOfSalePage() {
         const newItem: CartItem = {
             id: itemWithId.id,
             image_url: itemWithId.image_url ?? null,
+            cost_price: itemWithId.cost_price ?? null,
             barcode: itemWithId.barcode!,
             name: itemWithId.name!,
             price: itemWithId.price!,
@@ -897,6 +901,7 @@ export default function CashierPointOfSalePage() {
                             return {
                                 ...cartItem,
                                 image_url: newItem.image_url ?? cartItem.image_url,
+                                cost_price: newItem.cost_price,
                                 quantity: combinedQuantity,
                                 total: newTotal,
                                 
@@ -971,6 +976,7 @@ export default function CashierPointOfSalePage() {
             barcode,
             name: product.name,
             image_url: product.image_url ?? null,
+            cost_price: product.cost_price === null || product.cost_price === undefined ? null : Number(product.cost_price),
             price: product.sell_price,
             quantity: 1,
             isScaleProduct: product.type === 'scale_product',
@@ -1034,6 +1040,7 @@ export default function CashierPointOfSalePage() {
             id: `card_${card.id}_${Date.now()}`,
             barcode: `CARD_${card.id}`,
             image_url: getItemImageUrl(card),
+            cost_price: card.cost_price === null || card.cost_price === undefined ? null : Number(card.cost_price),
             name: cardName,
             price: Number(card.sell_price) || 0,
             quantity: 1,
@@ -1377,6 +1384,14 @@ export default function CashierPointOfSalePage() {
         focusBarcodeSearch();
     }, [t, toast, checkHeldCarts, focusBarcodeSearch]);
 
+    const handleUpdateItemPrice = (itemId: string, price: number): string | null => {
+        const nextItems = cartItems.map(item => item.id === itemId ? withCartPrice(item, price) : item);
+        const issue = cartPriceIssue(nextItems, (isDiscountVisible ? Math.min(cartDiscount, cartSummary.subtotal) : 0));
+        if (issue) return issue.minimum === null ? t('cart_price.reload_required') : t('cart_price.cart_error', { name: issue.name, minimum: formatIQD(issue.minimum, { precision: 2 }) });
+        setCartItems(nextItems);
+        return null;
+    };
+
     const handleCheckout = useCallback(async () => {
         if (cartItems.length === 0) {
             toast({
@@ -1386,6 +1401,12 @@ export default function CashierPointOfSalePage() {
                 duration: 3000,
             });
             focusBarcodeSearch(0);
+            return;
+        }
+
+        const pricingIssue = cartPriceIssue(cartItems, (isDiscountVisible ? Math.min(cartDiscount, cartSummary.subtotal) : 0));
+        if (pricingIssue) {
+            toast({ type: 'error', title: t('cart_price.title'), description: pricingIssue.minimum === null ? t('cart_price.reload_required') : t('cart_price.cart_error', { name: pricingIssue.name, minimum: formatIQD(pricingIssue.minimum, { precision: 2 }) }) });
             return;
         }
 
@@ -1403,7 +1424,7 @@ export default function CashierPointOfSalePage() {
         
         // Prepare transaction data
         const transactionData: CreateTransactionData = {
-            items: cartItems.map(item => item.transactionItem!),
+            items: cartItems.map(item => ({ ...item.transactionItem!, price_overridden: !!item.priceOverridden })),
             total_amount: Math.max(0, cartSummary.subtotal - rollbackState.cartDiscount),
             amount_paid: Math.max(0, cartSummary.subtotal - rollbackState.cartDiscount),
             change_due: 0,
@@ -2108,6 +2129,7 @@ export default function CashierPointOfSalePage() {
                         onClearCart={handleClearCart}
                         onRemoveItem={handleRemoveCartItem}
                         onUpdateQuantity={handleUpdateItemQuantity}
+                        onUpdatePrice={handleUpdateItemPrice}
                         onHold={handleHoldCart}
                         onRecall={handleRecallHeldCart}
                         onClearHold={handleClearHeldCarts}

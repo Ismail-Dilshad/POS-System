@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { ItemThumbnail } from '@/components/layout/item-thumbnail';
+import { CartPriceEditor } from '@/components/layout/cart-price-editor';
 import { Input } from '@/components/ui/input';
 import { Kbd } from '@/components/ui/kbd';
 import { Label } from '@/components/ui/label';
@@ -23,6 +24,7 @@ import React, { forwardRef, useImperativeHandle, useRef, useEffect, useCallback 
 // CartItem interface moved to @/types/cart
 
 interface ShoppingCartTableProps {
+    onUpdatePrice?: (itemId: string, price: number) => string | null;
     items: CartItem[];
     onUpdateQuantity?: (itemId: string, quantity: number, cartonMode?: {
         isCartonMode?: boolean;
@@ -57,6 +59,7 @@ const ShoppingCartTableComponent = (
     {
         items,
         onUpdateQuantity,
+        onUpdatePrice,
         onRemoveItem,
         onClearCart,
         onClearHold,
@@ -517,11 +520,9 @@ const ShoppingCartTableComponent = (
                                     </div>
                                     <div className="col-span-2 text-center">
                                         <div className="flex flex-col items-center">
-                                            <span className="text-sm font-semibold text-orange-700 dark:text-orange-300">
-                                                {formatCurrency(priceDisplayValue)}
-                                            </span>
+                                            <CartPriceEditor item={item} onChange={onUpdatePrice} />
                                             <span className="text-xs text-muted-foreground dark:text-muted-foreground/80">
-                                                {priceLabel}
+                                                {item.isCartonMode ? `${priceLabel}: ${formatCurrency(priceDisplayValue)}` : priceLabel}
                                             </span>
                                         </div>
                                     </div>

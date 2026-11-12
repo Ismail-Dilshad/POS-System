@@ -4344,5 +4344,14 @@
         "cashier": "Cashier sign in",
         "dataentry": "Data entry sign in",
         "choose": "Choose a login"
+    },
+    "cart_price": {
+        "title": "Edit selling price",
+        "unit_price": "Unit selling price (IQD)",
+        "apply": "Apply price",
+        "minimum_hint": "Minimum {{minimum}} per unit, including discounts (20% above cost).",
+        "minimum_error": "Enter a valid price of at least {{minimum}}, with up to two decimal places.",
+        "reload_required": "Refresh and re-add this item to load its cost before editing the price.",
+        "cart_error": "{{name}} must remain at least {{minimum}} per unit after discounts. Increase its price or reduce the discount."
     }
 }

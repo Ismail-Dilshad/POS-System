@@ -1,6 +1,7 @@
 import axios from '../../bootstrap';
 
 export interface TransactionItem {
+    price_overridden?: boolean;
     product_id?: number;
     card_id?: number;
     scale_product_id?: number;

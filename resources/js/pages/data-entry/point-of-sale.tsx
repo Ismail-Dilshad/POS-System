@@ -1,3 +1,5 @@
+import { cartPriceIssue, withCartPrice } from '@/lib/cart-pricing';
+import { formatIQD } from '@/lib/currency';
 import { getItemImageUrl } from '@/lib/item-image';
 import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import {
@@ -675,6 +677,14 @@ export default function PointOfSale() {
         [t],
     );
 
+    const handleUpdateItemPrice = (itemId: string, price: number): string | null => {
+        const nextItems = cartItems.map(item => item.id === itemId ? withCartPrice(item, price) : item);
+        const issue = cartPriceIssue(nextItems, discount);
+        if (issue) return issue.minimum === null ? t('cart_price.reload_required') : t('cart_price.cart_error', { name: issue.name, minimum: formatIQD(issue.minimum, { precision: 2 }) });
+        setCartItems(nextItems);
+        return null;
+    };
+
     const handleCheckout = useCallback(async () => {
         if (cartItems.length === 0) {
             toast({
@@ -684,6 +694,12 @@ export default function PointOfSale() {
                 duration: 3000,
             });
             focusBarcodeSearch(0);
+            return;
+        }
+
+        const pricingIssue = cartPriceIssue(cartItems, discount);
+        if (pricingIssue) {
+            toast({ type: 'error', title: t('cart_price.title'), description: pricingIssue.minimum === null ? t('cart_price.reload_required') : t('cart_price.cart_error', { name: pricingIssue.name, minimum: formatIQD(pricingIssue.minimum, { precision: 2 }) }) });
             return;
         }
 
@@ -699,7 +715,7 @@ export default function PointOfSale() {
         
         // Prepare transaction data
         const transactionData: CreateTransactionData = {
-            items: cartItems.map(item => item.transactionItem!),
+            items: cartItems.map(item => ({ ...item.transactionItem!, price_overridden: !!item.priceOverridden })),
             total_amount: Math.max(0, cartSummary.subtotal - rollbackState.discount),
             amount_paid: Math.max(0, cartSummary.subtotal - rollbackState.discount),
             change_due: 0,
@@ -898,6 +914,7 @@ export default function PointOfSale() {
         const newItem: CartItem = {
             id: itemWithId.id,
             image_url: itemWithId.image_url ?? null,
+            cost_price: itemWithId.cost_price ?? null,
             barcode: itemWithId.barcode!,
             name: itemWithId.name!,
             price: itemWithId.price!,
@@ -1002,6 +1019,7 @@ export default function PointOfSale() {
                             mergedItem = {
                                 ...cartItem,
                                 image_url: newItem.image_url ?? cartItem.image_url,
+                                cost_price: newItem.cost_price,
                                 quantity: combinedQuantity,
                                 total: newTotal,
                                 
@@ -1069,6 +1087,7 @@ export default function PointOfSale() {
             barcode: barcode,
             name: product.name,
             image_url: product.image_url ?? null,
+            cost_price: product.cost_price === null || product.cost_price === undefined ? null : Number(product.cost_price),
             price: product.sell_price,
             quantity: 1,
             isScaleProduct: product.type === 'scale_product',
@@ -1871,6 +1890,7 @@ export default function PointOfSale() {
                         className="min-h-0 flex-1"
                         items={cartItems}
                         onUpdateQuantity={updateQuantity}
+                        onUpdatePrice={handleUpdateItemPrice}
                         onRemoveItem={removeItem}
                         onClearCart={clearCurrentCart}
                         onClearHold={showClearHoldModal}
@@ -1999,6 +2019,7 @@ export default function PointOfSale() {
                                 id: `card_${card.id}_${Date.now()}`, // Unique ID for card products
                                 barcode: `CARD_${card.id}`,
                                 image_url: getItemImageUrl(card),
+                                cost_price: card.cost_price === null || card.cost_price === undefined ? null : Number(card.cost_price),
                                 name: `${card.name_card?.name || 'Card'} - Card #${card.id}`,
                                 price: card.sell_price, // Will be normalized in addItemToCart
                                 quantity: 1,
