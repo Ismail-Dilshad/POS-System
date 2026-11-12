@@ -1,11 +1,12 @@
 import { Badge } from '@/components/ui/badge';
+import { ItemThumbnail } from '@/components/layout/item-thumbnail';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { cn } from '@/lib/utils';
 import { formatCurrency } from '@/lib/currency';
 import type { PosProduct } from '@/services/utils/posService';
 import { useTranslation } from '@/hooks/use-translation';
-import { Image as ImageIcon, Loader2 } from 'lucide-react';
+import { Loader2 } from 'lucide-react';
 import { forwardRef, useImperativeHandle, useMemo, useRef } from 'react';
 
 type ProductGridVariant = 'featured' | 'compact';
@@ -134,7 +135,7 @@ export const CashierProductGrid = forwardRef<
                                     >
                                         <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-muted/40">
                                             <span className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-primary/15 opacity-70 transition-opacity duration-150 group-hover:opacity-85" />
-                                            <ImageIcon className="relative h-8 w-8 text-primary/25 transition-transform duration-150 group-hover:scale-105 group-hover:text-primary/30" />
+                                            <ItemThumbnail url={product.image_url} name={product.name} className="relative size-full rounded-none border-0 bg-transparent p-2" />
                                         </div>
                                         <div className="flex flex-col gap-1 bg-background px-2 py-2">
                                             <p className="truncate text-sm font-semibold text-foreground">

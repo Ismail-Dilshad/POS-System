@@ -485,7 +485,7 @@ store.form = storeForm
 * @see app/Http/Controllers/ScaleProductController.php:146
 * @route '/api/scale-products/{scaleProduct}'
 */
-export const show = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -500,7 +500,7 @@ show.definition = {
 * @see app/Http/Controllers/ScaleProductController.php:146
 * @route '/api/scale-products/{scaleProduct}'
 */
-show.url = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+show.url = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { scaleProduct: args }
     }
@@ -535,7 +535,7 @@ show.url = (args: { scaleProduct: number | { id: number } } | [scaleProduct: num
 * @see app/Http/Controllers/ScaleProductController.php:146
 * @route '/api/scale-products/{scaleProduct}'
 */
-show.get = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -545,7 +545,7 @@ show.get = (args: { scaleProduct: number | { id: number } } | [scaleProduct: num
 * @see app/Http/Controllers/ScaleProductController.php:146
 * @route '/api/scale-products/{scaleProduct}'
 */
-show.head = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, queryOptions),
     method: 'head',
 })
@@ -555,7 +555,7 @@ show.head = (args: { scaleProduct: number | { id: number } } | [scaleProduct: nu
 * @see app/Http/Controllers/ScaleProductController.php:146
 * @route '/api/scale-products/{scaleProduct}'
 */
-const showForm = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -568,7 +568,7 @@ const showForm = (args: { scaleProduct: number | { id: number } } | [scaleProduc
 * @see app/Http/Controllers/ScaleProductController.php:146
 * @route '/api/scale-products/{scaleProduct}'
 */
-showForm.get = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -581,7 +581,7 @@ showForm.get = (args: { scaleProduct: number | { id: number } } | [scaleProduct:
 * @see app/Http/Controllers/ScaleProductController.php:146
 * @route '/api/scale-products/{scaleProduct}'
 */
-showForm.head = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -598,7 +598,7 @@ show.form = showForm
 * @see app/Http/Controllers/ScaleProductController.php:174
 * @route '/api/scale-products/{scaleProduct}'
 */
-export const update = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -613,7 +613,7 @@ update.definition = {
 * @see app/Http/Controllers/ScaleProductController.php:174
 * @route '/api/scale-products/{scaleProduct}'
 */
-update.url = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+update.url = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { scaleProduct: args }
     }
@@ -648,7 +648,7 @@ update.url = (args: { scaleProduct: number | { id: number } } | [scaleProduct: n
 * @see app/Http/Controllers/ScaleProductController.php:174
 * @route '/api/scale-products/{scaleProduct}'
 */
-update.put = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -658,7 +658,7 @@ update.put = (args: { scaleProduct: number | { id: number } } | [scaleProduct: n
 * @see app/Http/Controllers/ScaleProductController.php:174
 * @route '/api/scale-products/{scaleProduct}'
 */
-const updateForm = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -673,7 +673,7 @@ const updateForm = (args: { scaleProduct: number | { id: number } } | [scaleProd
 * @see app/Http/Controllers/ScaleProductController.php:174
 * @route '/api/scale-products/{scaleProduct}'
 */
-updateForm.put = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -690,7 +690,7 @@ update.form = updateForm
 * @see app/Http/Controllers/ScaleProductController.php:262
 * @route '/api/scale-products/{scaleProduct}'
 */
-export const destroy = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -705,7 +705,7 @@ destroy.definition = {
 * @see app/Http/Controllers/ScaleProductController.php:262
 * @route '/api/scale-products/{scaleProduct}'
 */
-destroy.url = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+destroy.url = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { scaleProduct: args }
     }
@@ -740,7 +740,7 @@ destroy.url = (args: { scaleProduct: number | { id: number } } | [scaleProduct: 
 * @see app/Http/Controllers/ScaleProductController.php:262
 * @route '/api/scale-products/{scaleProduct}'
 */
-destroy.delete = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -750,7 +750,7 @@ destroy.delete = (args: { scaleProduct: number | { id: number } } | [scaleProduc
 * @see app/Http/Controllers/ScaleProductController.php:262
 * @route '/api/scale-products/{scaleProduct}'
 */
-const destroyForm = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -765,7 +765,7 @@ const destroyForm = (args: { scaleProduct: number | { id: number } } | [scalePro
 * @see app/Http/Controllers/ScaleProductController.php:262
 * @route '/api/scale-products/{scaleProduct}'
 */
-destroyForm.delete = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -782,7 +782,7 @@ destroy.form = destroyForm
 * @see app/Http/Controllers/ScaleProductController.php:238
 * @route '/api/scale-products/{scaleProduct}/toggle-pos'
 */
-export const togglePosVisibility = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+export const togglePosVisibility = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: togglePosVisibility.url(args, queryOptions),
     method: 'patch',
 })
@@ -797,7 +797,7 @@ togglePosVisibility.definition = {
 * @see app/Http/Controllers/ScaleProductController.php:238
 * @route '/api/scale-products/{scaleProduct}/toggle-pos'
 */
-togglePosVisibility.url = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+togglePosVisibility.url = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { scaleProduct: args }
     }
@@ -832,7 +832,7 @@ togglePosVisibility.url = (args: { scaleProduct: number | { id: number } } | [sc
 * @see app/Http/Controllers/ScaleProductController.php:238
 * @route '/api/scale-products/{scaleProduct}/toggle-pos'
 */
-togglePosVisibility.patch = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+togglePosVisibility.patch = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: togglePosVisibility.url(args, queryOptions),
     method: 'patch',
 })
@@ -842,7 +842,7 @@ togglePosVisibility.patch = (args: { scaleProduct: number | { id: number } } | [
 * @see app/Http/Controllers/ScaleProductController.php:238
 * @route '/api/scale-products/{scaleProduct}/toggle-pos'
 */
-const togglePosVisibilityForm = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const togglePosVisibilityForm = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: togglePosVisibility.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -857,7 +857,7 @@ const togglePosVisibilityForm = (args: { scaleProduct: number | { id: number } }
 * @see app/Http/Controllers/ScaleProductController.php:238
 * @route '/api/scale-products/{scaleProduct}/toggle-pos'
 */
-togglePosVisibilityForm.patch = (args: { scaleProduct: number | { id: number } } | [scaleProduct: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+togglePosVisibilityForm.patch = (args: { scaleProduct: string | number | { id: string | number } } | [scaleProduct: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: togglePosVisibility.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',

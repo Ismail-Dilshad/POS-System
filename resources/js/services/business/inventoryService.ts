@@ -1,4 +1,5 @@
 import axios from '../../bootstrap';
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import {
     type ApiResponse,
     type InventoryItem,
@@ -82,6 +83,58 @@ class InventoryService {
         };
     }> {
         try {
+            // Keep the existing backend untouched. Combine its regular-product and
+            // card pages so hidden scale rows cannot leave gaps or inflate pagination.
+            if (!SCALE_PRODUCTS_ENABLED &&
+                (!filters.productType || ['all', 'scale', 'scale_product'].includes(filters.productType))) {
+                const fetchType = (productType: string, requestedPage: number) =>
+                    this.getInventoryItems(
+                        { ...filters, productType }, requestedPage, perPage,
+                        exportMode, minimalMode, signal, refresh,
+                    );
+                const [products, cards] = await Promise.all([
+                    fetchType('product', page), fetchType('card', 1),
+                ]);
+                if (!products.success || !cards.success) {
+                    return { success: false, message: 'Failed to fetch inventory items' };
+                }
+                const productCount = products.pagination?.total ?? products.data?.length ?? 0;
+                const cardCount = cards.pagination?.total ?? cards.data?.length ?? 0;
+                const total = productCount + cardCount;
+                const pageSize = Math.max(1, Math.min(perPage, 100));
+                const currentPage = exportMode ? 1 : Math.max(1, page);
+                const offset = exportMode ? 0 : (currentPage - 1) * pageSize;
+                let data = products.data ?? [];
+                if (exportMode) {
+                    data = [...data, ...(cards.data ?? [])];
+                } else if (data.length < pageSize && offset < total) {
+                    const cardOffset = Math.max(0, offset - productCount);
+                    const firstCardPage = Math.floor(cardOffset / pageSize) + 1;
+                    const withinPage = cardOffset % pageSize;
+                    const firstCards = firstCardPage === 1 ? cards : await fetchType('card', firstCardPage);
+                    if (!firstCards.success) return firstCards;
+                    let cardData = (firstCards.data ?? []).slice(withinPage);
+                    const needed = Math.min(pageSize - data.length, cardCount - cardOffset);
+                    if (cardData.length < needed) {
+                        const nextCards = await fetchType('card', firstCardPage + 1);
+                        if (!nextCards.success) return nextCards;
+                        cardData = [...cardData, ...(nextCards.data ?? [])];
+                    }
+                    data = [...data, ...cardData.slice(0, needed)];
+                }
+                return {
+                    success: true,
+                    data,
+                    pagination: {
+                        total, per_page: exportMode ? total : pageSize,
+                        current_page: currentPage,
+                        last_page: exportMode ? 1 : Math.max(1, Math.ceil(total / pageSize)),
+                        from: data.length ? offset + 1 : 0,
+                        to: data.length ? offset + data.length : 0,
+                    },
+                };
+            }
+
             const params: Record<string, string | number | boolean> = {
                 page,
                 per_page: perPage,

@@ -1,6 +1,7 @@
 import axios from '../../bootstrap';
 
 export interface PosProduct {
+    image_url?: string | null;
     id: number;
     type: 'product' | 'scale_product';
     name: string;
@@ -70,11 +71,13 @@ class PosService {
                 u?: string;
                 c?: number; // per_carton field
                 r?: number; // carton_price field
+                m?: string | null; // image URL
             }) => {
                 const product = {
                     id: p.i,
                     type: p.t,
                     name: p.n,
+                    image_url: p.m ?? null,
                     barcode: p.b,
                     secondary_barcode: p.s,
                     sell_price: p.p,

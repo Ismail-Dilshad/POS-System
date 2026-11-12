@@ -1,3 +1,4 @@
+import { ItemThumbnail } from '@/components/layout/item-thumbnail';
 import { Input } from '@/components/ui/input';
 import { useTranslation } from '@/hooks/use-translation';
 import { type PosProduct } from '@/services/utils/posService';
@@ -169,6 +170,7 @@ export const NameSearchFilter = forwardRef<
                                         }
                                     >
                                         <div className="flex items-center gap-2">
+                                            <ItemThumbnail url={product.image_url} name={product.name} className="size-10" />
                                             <span className="font-medium">
                                                 {product.name}
                                             </span>

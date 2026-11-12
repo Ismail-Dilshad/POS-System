@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { ItemThumbnail } from '@/components/layout/item-thumbnail';
 import { Input } from '@/components/ui/input';
 import { Kbd } from '@/components/ui/kbd';
 import { Label } from '@/components/ui/label';
@@ -275,6 +276,7 @@ const ShoppingCartTableComponent = (
                                     </div>
                                     <div className="col-span-3">
                                         <div className="flex items-center gap-2">
+                                            <ItemThumbnail url={item.image_url} name={item.name} />
                                             <span className="text-sm font-semibold text-green-700 dark:text-green-300">
                                                 {item.name}
                                             </span>

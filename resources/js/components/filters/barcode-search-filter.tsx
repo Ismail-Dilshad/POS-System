@@ -1,3 +1,4 @@
+import { ItemThumbnail } from '@/components/layout/item-thumbnail';
 import { DuplicateBarcodeModal } from '@/components/modals/duplicate-barcode-modal';
 import { Input } from '@/components/ui/input';
 import { useTranslation } from '@/hooks/use-translation';
@@ -319,6 +320,18 @@ export const BarcodeSearchFilter = forwardRef<
                     return; // Let the event bubble up
                 }
 
+                // Barcode characters belong to this input, not POS letter shortcuts.
+                // Keep the default input behavior so short codes such as C5 are entered intact.
+                if (
+                    e.key.length === 1 &&
+                    !e.ctrlKey &&
+                    !e.metaKey &&
+                    !e.altKey
+                ) {
+                    e.stopPropagation();
+                    return;
+                }
+
                 // Handle Enter - process search and prevent global handler interference
                 if (e.key === 'Enter') {
                     const currentSearchTerm = searchTerm.trim();
@@ -450,6 +463,7 @@ export const BarcodeSearchFilter = forwardRef<
                                         }
                                     >
                                         <div className="flex items-center gap-2">
+                                            <ItemThumbnail url={product.image_url} name={product.name} className="size-10" />
                                             <span className="font-mono font-medium">
                                                 {posService.getPrimaryBarcode(
                                                     product,

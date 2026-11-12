@@ -1,3 +1,4 @@
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import { ImportSuppliersModal } from '@/components/modals/import-suppliers-modal';
 import { PageHeader } from '@/components/layout/page-header';
 import { StatCard } from '@/components/charts/stats-cards';
@@ -128,19 +129,19 @@ export default function Suppliers() {
                         count: totalCount,
                         plural: totalCount > 1 ? 's' : ''
                     });
-                    if (productCount > 0 && scaleProductCount > 0) {
+                    if (SCALE_PRODUCTS_ENABLED && productCount > 0 && scaleProductCount > 0) {
                         warningMessage += t('suppliers.delete_modal.warning_both', {
                             productCount,
                             productPlural: productCount > 1 ? 's' : '',
                             scaleProductCount,
                             scaleProductPlural: scaleProductCount > 1 ? 's' : ''
                         });
-                    } else if (productCount > 0) {
+                    } else if (SCALE_PRODUCTS_ENABLED && productCount > 0) {
                         warningMessage += t('suppliers.delete_modal.warning_products', {
                             productCount,
                             productPlural: productCount > 1 ? 's' : ''
                         });
-                    } else if (scaleProductCount > 0) {
+                    } else if (SCALE_PRODUCTS_ENABLED && scaleProductCount > 0) {
                         warningMessage += t('suppliers.delete_modal.warning_scale_products', {
                             scaleProductCount,
                             scaleProductPlural: scaleProductCount > 1 ? 's' : ''

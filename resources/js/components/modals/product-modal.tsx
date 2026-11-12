@@ -1,3 +1,4 @@
+import { PRODUCT_ADVANCED_FIELDS_ENABLED } from '@/config/features';
 import { ItemImageField } from '@/components/forms/item-image-field';
 import { useItemImage } from '@/hooks/use-item-image';
 import { BarcodePreviewModal } from '@/components/modals/barcode-preview-modal';
@@ -33,14 +34,12 @@ import { productService } from '@/services/business/productService';
 import { supplierService, type Supplier } from '@/services/business/supplierService';
 import type { Product } from '@/types';
 import {
-    AlertCircle,
     CheckCircle,
     Eye,
     Loader2,
     Plus,
     Search,
     X,
-    Zap,
 } from 'lucide-react';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useRemember } from '@inertiajs/react';
@@ -452,7 +451,7 @@ export function ProductModal({
             }
 
             const shouldAutoPopulateCarton =
-                !options.skipCartonAuto && !cartonPriceManuallyEdited;
+                PRODUCT_ADVANCED_FIELDS_ENABLED && !options.skipCartonAuto && !cartonPriceManuallyEdited;
 
             if (shouldAutoPopulateCarton) {
                 const perCartonValue =
@@ -687,15 +686,15 @@ export function ProductModal({
     return (
         <Dialog open={isOpen} onOpenChange={handleClose}>
             <DialogContent
-                className="max-h-[90vh] overflow-y-auto [&>button]:hidden border-indigo-200 shadow-[0_4px_8px_0_rgba(0,0,0,0.2),0_2px_4px_0_rgba(0,0,0,0.1)] dark:border-indigo-800 dark:shadow-[0_4px_8px_0_rgba(0,0,0,0.4),0_2px_4px_0_rgba(0,0,0,0.3)]"
+                className="flex max-h-[calc(100dvh-2rem)] flex-col gap-0 overflow-hidden p-0 [&>button]:hidden border-indigo-200 shadow-[0_4px_8px_0_rgba(0,0,0,0.2),0_2px_4px_0_rgba(0,0,0,0.1)] dark:border-indigo-800 dark:shadow-[0_4px_8px_0_rgba(0,0,0,0.4),0_2px_4px_0_rgba(0,0,0,0.3)]"
                 style={{
                     zIndex: 9999,
-                    maxWidth: '75vw',
-                    width: '1100px',
+                    maxWidth: 'calc(100vw - 2rem)',
+                    width: '1280px',
                 }}
             >
-                <DialogHeader className="border-b border-indigo-200 pb-4 dark:border-indigo-800">
-                    <DialogTitle className="flex items-center gap-2 text-xl font-bold text-indigo-800 dark:text-indigo-200">
+                <DialogHeader className="shrink-0 border-b border-indigo-200 px-6 py-4 dark:border-indigo-800">
+                    <DialogTitle className="flex items-center gap-2 text-2xl font-bold text-indigo-800 dark:text-indigo-200">
                         <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-indigo-500 to-indigo-600 shadow-lg">
                             <Plus className="h-4 w-4 text-white" />
                         </div>
@@ -708,7 +707,7 @@ export function ProductModal({
                 <form
                     id="product-form"
                     onSubmit={handleSave}
-                    className="space-y-6"
+                    className="min-h-0 flex-1 space-y-3 overflow-y-auto px-6 py-4 [&_input]:text-base [&_button[role=combobox]]:text-base"
                 >
                     {/* Error Display */}
                     {error && (
@@ -717,13 +716,13 @@ export function ProductModal({
                         </div>
                     )}
 
-                    <ItemImageField value={itemImage.file} remove={itemImage.remove} onChange={itemImage.change} disabled={saving} existingUrl={typeof editProduct?.image_url === 'string' ? editProduct.image_url : null} />
-                    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+                    <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_240px]">
+                        <div className="grid content-start grid-cols-1 gap-x-5 gap-y-3 sm:grid-cols-2 md:grid-cols-3">
                         {/* Product Name */}
                         <div className="space-y-2">
                             <Label
                                 htmlFor="name"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.product_name')} *
                             </Label>
@@ -734,7 +733,7 @@ export function ProductModal({
                                 onChange={(e) =>
                                     handleInputChange('name', e.target.value)
                                 }
-                                className="h-11"
+                                className="h-12"
                             />
                         </div>
 
@@ -742,13 +741,13 @@ export function ProductModal({
                         <div className="relative space-y-2" ref={categoryRef}>
                             <Label
                                 htmlFor="category"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.category')} *
                             </Label>
                             <div className="relative">
                                 {selectedCategory ? (
-                                    <div className="flex h-11 items-center justify-between rounded-md border border-input bg-background p-3 transition-colors hover:border-ring">
+                                    <div className="flex h-12 items-center justify-between rounded-md border border-input bg-background p-3 transition-colors hover:border-ring">
                                         <span className="text-sm">
                                             {selectedCategory.name}
                                         </span>
@@ -775,7 +774,7 @@ export function ProductModal({
                                             onFocus={() =>
                                                 setCategoryDropdownOpen(true)
                                             }
-                                            className="h-11 pr-10"
+                                            className="h-12 pr-10"
                                         />
                                         <Search className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                                     </>
@@ -818,13 +817,13 @@ export function ProductModal({
                         <div className="relative space-y-2" ref={supplierRef}>
                             <Label
                                 htmlFor="supplier"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.supplier')} *
                             </Label>
                             <div className="relative">
                                 {selectedSupplier ? (
-                                    <div className="flex h-11 items-center justify-between rounded-md border border-input bg-background p-3 transition-colors hover:border-ring">
+                                    <div className="flex h-12 items-center justify-between rounded-md border border-input bg-background p-3 transition-colors hover:border-ring">
                                         <div className="flex flex-col">
                                             <span className="text-sm">
                                                 {selectedSupplier.name}
@@ -853,7 +852,7 @@ export function ProductModal({
                                             onFocus={() =>
                                                 setSupplierDropdownOpen(true)
                                             }
-                                            className="h-11 pr-10"
+                                            className="h-12 pr-10"
                                         />
                                         <Search className="absolute top-1/2 right-3 h-4 w-4 -translate-y-1/2 transform text-muted-foreground" />
                                     </>
@@ -900,7 +899,7 @@ export function ProductModal({
                         <div className="space-y-2">
                             <Label
                                 htmlFor="barcodeType"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.barcode_type')}
                             </Label>
@@ -910,7 +909,7 @@ export function ProductModal({
                                     handleInputChange('barcodeType', value)
                                 }
                             >
-                                <SelectTrigger className="h-11">
+                                <SelectTrigger className="h-12">
                                     <SelectValue
                                         placeholder={t('product.select_barcode_type')}
                                     />
@@ -932,7 +931,7 @@ export function ProductModal({
                         <div className="space-y-2">
                             <Label
                                 htmlFor="barcode"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.barcode')} *
                             </Label>
@@ -949,13 +948,13 @@ export function ProductModal({
                                             e.preventDefault();
                                         }
                                     }}
-                                    className="h-11 flex-1"
+                                    className="h-12 flex-1"
                                 />
                                 <Button
                                     type="button"
                                     variant="outline"
                                     size="sm"
-                                    className="h-11 px-3"
+                                    className="h-12 px-3"
                                     onClick={handleAutoGenerateBarcode}
                                     disabled={!formData.barcodeType}
                                     title={
@@ -970,7 +969,7 @@ export function ProductModal({
                                     type="button"
                                     variant="outline"
                                     size="sm"
-                                    className="h-11 px-3"
+                                    className="h-12 px-3"
                                     onClick={handleBarcodePreview}
                                     disabled={!formData.barcode}
                                     title={
@@ -984,86 +983,14 @@ export function ProductModal({
                             </div>
 
                             {/* Barcode Detection Results */}
-                            {barcodeDetection && (
-                                <div className="mt-2 rounded-md border bg-muted/50 p-3">
-                                    <div className="mb-2 flex items-center gap-2">
-                                        {barcodeDetection.success ? (
-                                            <CheckCircle className="h-4 w-4 text-green-600" />
-                                        ) : (
-                                            <AlertCircle className="h-4 w-4 text-yellow-600" />
-                                        )}
-                                        <span className="text-sm font-medium">
-                                            {barcodeDetection.success
-                                                ? t('product.barcode_type_detected')
-                                                : t('product.barcode_type_suggested')}
-                                        </span>
-                                        <span className="text-xs text-muted-foreground">
-                                            ({barcodeDetection.confidence || 0}%{' '}
-                                            {t('product.confidence')})
-                                        </span>
-                                    </div>
-
-                                    {barcodeDetection.detectedType && (
-                                        <div className="space-y-2">
-                                            <div className="flex items-center gap-2">
-                                                <Zap className="h-4 w-4 text-primary" />
-                                                <span className="text-sm">
-                                                    {t('product.detected')}:{' '}
-                                                    <strong>
-                                                        {barcodeDetection.detectedType.toUpperCase()}
-                                                    </strong>
-                                                </span>
-                                            </div>
-
-                                            {showBarcodeTypeSelection && (
-                                                <div className="flex gap-2">
-                                                    <Button
-                                                        type="button"
-                                                        variant="outline"
-                                                        size="sm"
-                                                        onClick={() =>
-                                                            handleDetectedBarcodeTypeSelect(
-                                                                barcodeDetection.detectedType!,
-                                                            )
-                                                        }
-                                                        className="text-xs"
-                                                    >
-                                                        {t('product.use')}{' '}
-                                                        {barcodeDetection.detectedType.toUpperCase()}
-                                                    </Button>
-                                                    <Button
-                                                        type="button"
-                                                        variant="ghost"
-                                                        size="sm"
-                                                        onClick={() =>
-                                                            setShowBarcodeTypeSelection(
-                                                                false,
-                                                            )
-                                                        }
-                                                        className="text-xs"
-                                                    >
-                                                        {t('product.dismiss')}
-                                                    </Button>
-                                                </div>
-                                            )}
-
-                                            {barcodeDetection.suggestions &&
-                                                barcodeDetection.suggestions
-                                                    .length > 0 && (
-                                                    <div className="text-xs text-muted-foreground">
-                                                        {t('product.alternatives')}:{' '}
-                                                        {barcodeDetection.suggestions.join(
-                                                            ', ',
-                                                        )}
-                                                    </div>
-                                                )}
-                                        </div>
-                                    )}
-
-                                    {barcodeDetection.error && (
-                                        <div className="text-xs text-destructive">
-                                            {barcodeDetection.error}
-                                        </div>
+                            {barcodeDetection?.detectedType && (
+                                <div className="flex flex-wrap items-center gap-2 pt-1 text-sm text-muted-foreground">
+                                    <CheckCircle className="size-4 shrink-0 text-green-600" />
+                                    <span>{t('product.detected')}: {barcodeDetection.detectedType.toUpperCase()}</span>
+                                    {showBarcodeTypeSelection && (
+                                        <Button type="button" variant="ghost" size="sm" className="h-7 px-2" onClick={() => handleDetectedBarcodeTypeSelect(barcodeDetection.detectedType!)}>
+                                            {t('product.use')}
+                                        </Button>
                                     )}
                                 </div>
                             )}
@@ -1073,7 +1000,7 @@ export function ProductModal({
                         <div className="space-y-2">
                             <Label
                                 htmlFor="secondaryBarcode"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.secondary_barcode')}
                             </Label>
@@ -1092,7 +1019,7 @@ export function ProductModal({
                                         e.preventDefault();
                                     }
                                 }}
-                                className="h-11"
+                                className="h-12"
                             />
                         </div>
 
@@ -1100,7 +1027,7 @@ export function ProductModal({
                         <div className="space-y-2">
                             <Label
                                 htmlFor="costPrice"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.cost_price')} ({getCurrencySymbol()})
                                 *
@@ -1117,7 +1044,7 @@ export function ProductModal({
                                         e.target.value,
                                     )
                                 }
-                                className="h-11"
+                                className="h-12"
                             />
                         </div>
 
@@ -1125,7 +1052,7 @@ export function ProductModal({
                         <div className="space-y-2">
                             <Label
                                 htmlFor="sellPrice"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.sell_price')} ({getCurrencySymbol()})
                                 *
@@ -1142,15 +1069,15 @@ export function ProductModal({
                                         e.target.value,
                                     )
                                 }
-                                className="h-11"
+                                className="h-12"
                             />
                         </div>
 
                         {/* Profit Margin (Auto) */}
-                        <div className="space-y-2">
+                        {PRODUCT_ADVANCED_FIELDS_ENABLED && (<div className="space-y-2">
                             <Label
                                 htmlFor="profitMargin"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.profit_margin_auto')}
                             </Label>
@@ -1160,13 +1087,13 @@ export function ProductModal({
                                 readOnly
                                 className="bg-muted"
                             />
-                        </div>
+                        </div>)}
 
                         {/* Stock */}
                         <div className="space-y-2">
                             <Label
                                 htmlFor="stock"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.stock_quantity')} *
                             </Label>
@@ -1178,7 +1105,7 @@ export function ProductModal({
                                 onChange={(e) =>
                                     handleInputChange('stock', e.target.value)
                                 }
-                                className="h-11"
+                                className="h-12"
                             />
                         </div>
 
@@ -1186,7 +1113,7 @@ export function ProductModal({
                         <div className="space-y-2">
                             <Label
                                 htmlFor="minStock"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.minimum_stock_auto')} *
                             </Label>
@@ -1201,15 +1128,15 @@ export function ProductModal({
                                         e.target.value,
                                     )
                                 }
-                                className="h-11"
+                                className="h-12"
                             />
                         </div>
 
                         {/* Per Carton */}
-                        <div className="space-y-2">
+                        {PRODUCT_ADVANCED_FIELDS_ENABLED && (<div className="space-y-2">
                             <Label
                                 htmlFor="perCarton"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.per_carton')}
                             </Label>
@@ -1224,15 +1151,15 @@ export function ProductModal({
                                         e.target.value,
                                     )
                                 }
-                                className="h-11"
+                                className="h-12"
                             />
-                        </div>
+                        </div>)}
 
                         {/* Carton Price */}
-                        <div className="space-y-2">
+                        {PRODUCT_ADVANCED_FIELDS_ENABLED && (<div className="space-y-2">
                             <Label
                                 htmlFor="cartonPrice"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.carton_price')}
                             </Label>
@@ -1246,19 +1173,19 @@ export function ProductModal({
                                 onChange={(e) =>
                                     handleCartonPriceChange(e.target.value)
                                 }
-                                className="h-11"
+                                className="h-12"
                             />
-                        </div>
+                        </div>)}
 
                         {/* Show in POS */}
                         <div className="space-y-2">
                             <Label
                                 htmlFor="showInPos"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.show_in_pos')}
                             </Label>
-                            <div className="flex h-11 items-center justify-between rounded-md border border-input bg-background p-3 transition-colors hover:border-ring">
+                            <div className="flex h-12 items-center justify-between rounded-md border border-input bg-background p-3 transition-colors hover:border-ring">
                                 <div className="flex items-center space-x-3">
                                     <Switch
                                         id="showInPos"
@@ -1270,11 +1197,6 @@ export function ProductModal({
                                             )
                                         }
                                     />
-                                    <span className="text-sm font-medium">
-                                        {formData.showInPos
-                                            ? t('product.visible_in_pos')
-                                            : t('product.hidden_from_pos')}
-                                    </span>
                                 </div>
                                 <span
                                     className={`rounded-full px-2 py-1 text-xs ${
@@ -1291,10 +1213,10 @@ export function ProductModal({
                         </div>
 
                         {/* Days Until Expire (Auto) */}
-                        <div className="space-y-2">
+                        {PRODUCT_ADVANCED_FIELDS_ENABLED && (<div className="space-y-2">
                             <Label
                                 htmlFor="daysUntilExpire"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.days_until_expire_auto')}
                             </Label>
@@ -1304,13 +1226,13 @@ export function ProductModal({
                                 readOnly
                                 className="bg-muted"
                             />
-                        </div>
+                        </div>)}
 
                         {/* Expire Date - New Row */}
-                        <div className="space-y-2">
+                        {PRODUCT_ADVANCED_FIELDS_ENABLED && (<div className="space-y-2">
                             <Label
                                 htmlFor="expireDate"
-                                className="text-sm font-medium"
+                                className="text-base font-semibold"
                             >
                                 {t('product.expire_date')}
                             </Label>
@@ -1321,13 +1243,17 @@ export function ProductModal({
                                     handleInputChange('expireDate', date)
                                 }
                                 placeholder={t('product.expire_date_placeholder')}
-                                className="h-11"
+                                className="h-12"
                             />
-                        </div>
+                        </div>)}
+                    </div>
+                        <aside className="min-w-0">
+                            <ItemImageField compact value={itemImage.file} remove={itemImage.remove} onChange={itemImage.change} disabled={saving} existingUrl={typeof editProduct?.image_url === 'string' ? editProduct.image_url : null} />
+                        </aside>
                     </div>
                 </form>
 
-                <DialogFooter className="border-t border-indigo-200 pt-4 dark:border-indigo-800">
+                <DialogFooter className="shrink-0 border-t border-indigo-200 px-6 py-4 dark:border-indigo-800 [&_button]:h-12 [&_button]:px-6 [&_button]:text-base">
                     <Button variant="outline" onClick={handleClose} className="border-indigo-300 bg-indigo-50 text-indigo-700 hover:border-indigo-500 hover:bg-indigo-100 hover:text-indigo-800 focus:border-indigo-500 focus:bg-indigo-100 focus:ring-2 focus:ring-indigo-200 focus:outline-none dark:border-indigo-600 dark:bg-indigo-900/20 dark:text-indigo-300 dark:hover:border-indigo-500 dark:hover:bg-indigo-900/30 dark:hover:text-indigo-200 dark:focus:border-indigo-500 dark:focus:bg-indigo-900/30 dark:focus:ring-2 dark:focus:ring-indigo-400">
                         {t('common.cancel')}
                     </Button>

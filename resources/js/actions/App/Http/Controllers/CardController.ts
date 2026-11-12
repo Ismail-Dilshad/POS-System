@@ -96,7 +96,7 @@ statistics.form = statisticsForm
 * @see app/Http/Controllers/CardController.php:271
 * @route '/api/cards/by-name-card/{nameCard}'
 */
-export const byNameCard = (args: { nameCard: number | { id: number } } | [nameCard: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const byNameCard = (args: { nameCard: string | number | { id: string | number } } | [nameCard: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: byNameCard.url(args, queryOptions),
     method: 'get',
 })
@@ -111,7 +111,7 @@ byNameCard.definition = {
 * @see app/Http/Controllers/CardController.php:271
 * @route '/api/cards/by-name-card/{nameCard}'
 */
-byNameCard.url = (args: { nameCard: number | { id: number } } | [nameCard: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+byNameCard.url = (args: { nameCard: string | number | { id: string | number } } | [nameCard: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { nameCard: args }
     }
@@ -146,7 +146,7 @@ byNameCard.url = (args: { nameCard: number | { id: number } } | [nameCard: numbe
 * @see app/Http/Controllers/CardController.php:271
 * @route '/api/cards/by-name-card/{nameCard}'
 */
-byNameCard.get = (args: { nameCard: number | { id: number } } | [nameCard: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+byNameCard.get = (args: { nameCard: string | number | { id: string | number } } | [nameCard: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: byNameCard.url(args, queryOptions),
     method: 'get',
 })
@@ -156,7 +156,7 @@ byNameCard.get = (args: { nameCard: number | { id: number } } | [nameCard: numbe
 * @see app/Http/Controllers/CardController.php:271
 * @route '/api/cards/by-name-card/{nameCard}'
 */
-byNameCard.head = (args: { nameCard: number | { id: number } } | [nameCard: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+byNameCard.head = (args: { nameCard: string | number | { id: string | number } } | [nameCard: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: byNameCard.url(args, queryOptions),
     method: 'head',
 })
@@ -166,7 +166,7 @@ byNameCard.head = (args: { nameCard: number | { id: number } } | [nameCard: numb
 * @see app/Http/Controllers/CardController.php:271
 * @route '/api/cards/by-name-card/{nameCard}'
 */
-const byNameCardForm = (args: { nameCard: number | { id: number } } | [nameCard: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const byNameCardForm = (args: { nameCard: string | number | { id: string | number } } | [nameCard: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: byNameCard.url(
     args,
     queryOptions
@@ -179,7 +179,7 @@ const byNameCardForm = (args: { nameCard: number | { id: number } } | [nameCard:
 * @see app/Http/Controllers/CardController.php:271
 * @route '/api/cards/by-name-card/{nameCard}'
 */
-byNameCardForm.get = (args: { nameCard: number | { id: number } } | [nameCard: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+byNameCardForm.get = (args: { nameCard: string | number | { id: string | number } } | [nameCard: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: byNameCard.url(
     args,
     queryOptions
@@ -192,7 +192,7 @@ byNameCardForm.get = (args: { nameCard: number | { id: number } } | [nameCard: n
 * @see app/Http/Controllers/CardController.php:271
 * @route '/api/cards/by-name-card/{nameCard}'
 */
-byNameCardForm.head = (args: { nameCard: number | { id: number } } | [nameCard: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+byNameCardForm.head = (args: { nameCard: string | number | { id: string | number } } | [nameCard: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: byNameCard.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -368,7 +368,7 @@ store.form = storeForm
 * @see app/Http/Controllers/CardController.php:126
 * @route '/api/cards/{card}'
 */
-export const show = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -383,7 +383,7 @@ show.definition = {
 * @see app/Http/Controllers/CardController.php:126
 * @route '/api/cards/{card}'
 */
-show.url = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+show.url = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { card: args }
     }
@@ -418,7 +418,7 @@ show.url = (args: { card: number | { id: number } } | [card: number | { id: numb
 * @see app/Http/Controllers/CardController.php:126
 * @route '/api/cards/{card}'
 */
-show.get = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -428,7 +428,7 @@ show.get = (args: { card: number | { id: number } } | [card: number | { id: numb
 * @see app/Http/Controllers/CardController.php:126
 * @route '/api/cards/{card}'
 */
-show.head = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, queryOptions),
     method: 'head',
 })
@@ -438,7 +438,7 @@ show.head = (args: { card: number | { id: number } } | [card: number | { id: num
 * @see app/Http/Controllers/CardController.php:126
 * @route '/api/cards/{card}'
 */
-const showForm = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -451,7 +451,7 @@ const showForm = (args: { card: number | { id: number } } | [card: number | { id
 * @see app/Http/Controllers/CardController.php:126
 * @route '/api/cards/{card}'
 */
-showForm.get = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -464,7 +464,7 @@ showForm.get = (args: { card: number | { id: number } } | [card: number | { id: 
 * @see app/Http/Controllers/CardController.php:126
 * @route '/api/cards/{card}'
 */
-showForm.head = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -481,7 +481,7 @@ show.form = showForm
 * @see app/Http/Controllers/CardController.php:148
 * @route '/api/cards/{card}'
 */
-export const update = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -496,7 +496,7 @@ update.definition = {
 * @see app/Http/Controllers/CardController.php:148
 * @route '/api/cards/{card}'
 */
-update.url = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+update.url = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { card: args }
     }
@@ -531,7 +531,7 @@ update.url = (args: { card: number | { id: number } } | [card: number | { id: nu
 * @see app/Http/Controllers/CardController.php:148
 * @route '/api/cards/{card}'
 */
-update.put = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -541,7 +541,7 @@ update.put = (args: { card: number | { id: number } } | [card: number | { id: nu
 * @see app/Http/Controllers/CardController.php:148
 * @route '/api/cards/{card}'
 */
-const updateForm = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -556,7 +556,7 @@ const updateForm = (args: { card: number | { id: number } } | [card: number | { 
 * @see app/Http/Controllers/CardController.php:148
 * @route '/api/cards/{card}'
 */
-updateForm.put = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -573,7 +573,7 @@ update.form = updateForm
 * @see app/Http/Controllers/CardController.php:180
 * @route '/api/cards/{card}'
 */
-export const destroy = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -588,7 +588,7 @@ destroy.definition = {
 * @see app/Http/Controllers/CardController.php:180
 * @route '/api/cards/{card}'
 */
-destroy.url = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+destroy.url = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { card: args }
     }
@@ -623,7 +623,7 @@ destroy.url = (args: { card: number | { id: number } } | [card: number | { id: n
 * @see app/Http/Controllers/CardController.php:180
 * @route '/api/cards/{card}'
 */
-destroy.delete = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -633,7 +633,7 @@ destroy.delete = (args: { card: number | { id: number } } | [card: number | { id
 * @see app/Http/Controllers/CardController.php:180
 * @route '/api/cards/{card}'
 */
-const destroyForm = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -648,7 +648,7 @@ const destroyForm = (args: { card: number | { id: number } } | [card: number | {
 * @see app/Http/Controllers/CardController.php:180
 * @route '/api/cards/{card}'
 */
-destroyForm.delete = (args: { card: number | { id: number } } | [card: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { card: string | number | { id: string | number } } | [card: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',

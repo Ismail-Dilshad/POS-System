@@ -1,3 +1,4 @@
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -503,12 +504,12 @@ export function AdjustModal({
                                         <span className="text-base">{t('adjust_modal.normal_product')}</span>
                                     </div>
                                 </SelectItem>
-                                <SelectItem value="scale_product">
+                                {SCALE_PRODUCTS_ENABLED && (<SelectItem value="scale_product">
                                     <div className="flex items-center gap-3">
                                         <Scale className="h-5 w-5" />
                                         <span className="text-base">{t('adjust_modal.scale_product')}</span>
                                     </div>
-                                </SelectItem>
+                                </SelectItem>)}
                             </SelectContent>
                         </Select>
                     </div>

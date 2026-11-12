@@ -1,3 +1,5 @@
+import { getItemImageUrl } from '@/lib/item-image';
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import CashierLayout from '@/layouts/cashier/cashier-layout';
 import {
     CashierShoppingCart,
@@ -430,6 +432,7 @@ export default function CashierPointOfSalePage() {
                 id: product.id,
                 type: 'product',
                 name: product.name,
+                image_url: product.image_url ?? null,
                 barcode,
                 secondary_barcode: product.secondary_barcode || undefined,
                 sell_price:
@@ -772,6 +775,7 @@ export default function CashierPointOfSalePage() {
 
         const newItem: CartItem = {
             id: itemWithId.id,
+            image_url: itemWithId.image_url ?? null,
             barcode: itemWithId.barcode!,
             name: itemWithId.name!,
             price: itemWithId.price!,
@@ -892,6 +896,7 @@ export default function CashierPointOfSalePage() {
                             
                             return {
                                 ...cartItem,
+                                image_url: newItem.image_url ?? cartItem.image_url,
                                 quantity: combinedQuantity,
                                 total: newTotal,
                                 
@@ -965,6 +970,7 @@ export default function CashierPointOfSalePage() {
         const baseItem: Partial<CartItem> = {
             barcode,
             name: product.name,
+            image_url: product.image_url ?? null,
             price: product.sell_price,
             quantity: 1,
             isScaleProduct: product.type === 'scale_product',
@@ -1027,6 +1033,7 @@ export default function CashierPointOfSalePage() {
         addItemToCart({
             id: `card_${card.id}_${Date.now()}`,
             barcode: `CARD_${card.id}`,
+            image_url: getItemImageUrl(card),
             name: cardName,
             price: Number(card.sell_price) || 0,
             quantity: 1,
@@ -1041,6 +1048,7 @@ export default function CashierPointOfSalePage() {
 
 
     const handleScale = () => {
+        if (!SCALE_PRODUCTS_ENABLED) return;
         setScaleModalOpen(true);
     };
 
@@ -1686,7 +1694,7 @@ export default function CashierPointOfSalePage() {
                     }
 
                     event.preventDefault();
-                    if (!scaleModalOpen) {
+                    if (SCALE_PRODUCTS_ENABLED && !scaleModalOpen) {
                         setScaleModalOpen(true);
                     }
                     break;
@@ -1948,7 +1956,7 @@ export default function CashierPointOfSalePage() {
                     <div className="w-full flex-shrink-0 rounded-md bg-card text-card-foreground shadow-[0_4px_8px_0_rgba(0,0,0,0.2),0_2px_4px_0_rgba(0,0,0,0.1)] dark:shadow-[0_4px_8px_0_rgba(0,0,0,0.4),0_2px_4px_0_rgba(0,0,0,0.3)]">
                         <div className="p-4 lg:p-6 relative">
                             {/* Filter Grid - Responsive columns */}
-                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 items-end gap-2 lg:gap-4">
+                            <div className={`grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 ${SCALE_PRODUCTS_ENABLED ? 'lg:grid-cols-5' : 'lg:grid-cols-4'} items-end gap-2 lg:gap-4`}>
                                 {/* Barcode Search */}
                                 <div className="space-y-2 rounded-md p-1 lg:p-2 transition-colors duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/20">
                                     <div className="flex items-center gap-2">
@@ -1983,7 +1991,7 @@ export default function CashierPointOfSalePage() {
                                 </div>
 
                                 {/* Scale Filter */}
-                                <div className="space-y-2 rounded-md p-1 lg:p-2 transition-colors duration-200 hover:bg-cyan-50 dark:hover:bg-cyan-900/20">
+                                {SCALE_PRODUCTS_ENABLED && (<div className="space-y-2 rounded-md p-1 lg:p-2 transition-colors duration-200 hover:bg-cyan-50 dark:hover:bg-cyan-900/20">
                                     <Label className="text-xs lg:text-sm font-medium text-cyan-600 dark:text-cyan-400">
                                         &nbsp;
                                     </Label>
@@ -1997,7 +2005,7 @@ export default function CashierPointOfSalePage() {
                                         <span className="text-xs lg:text-sm">{t('point_of_sale.scale')}</span>
                                         <Kbd className="bg-background text-foreground border border-border/50 px-1.5 py-0.5 text-xs font-mono">T</Kbd>
                                     </Button>
-                                </div>
+                                </div>)}
 
                                 {/* Cards Filter */}
                                 <div className="space-y-2 rounded-md p-1 lg:p-2 transition-colors duration-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/20">
@@ -2170,7 +2178,7 @@ export default function CashierPointOfSalePage() {
             </Suspense>
 
             {/* Scale Modal */}
-            <Suspense fallback={null}>
+            {SCALE_PRODUCTS_ENABLED && (<Suspense fallback={null}>
                 <ScaleModal
                     isOpen={scaleModalOpen}
                     onClose={() => {
@@ -2183,7 +2191,7 @@ export default function CashierPointOfSalePage() {
                     }}
                     onProductSelect={handleScaleProductSelect}
                 />
-            </Suspense>
+            </Suspense>)}
 
             {/* Unified Cards Modal */}
             <Suspense fallback={null}>

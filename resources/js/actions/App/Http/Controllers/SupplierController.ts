@@ -481,7 +481,7 @@ store.form = storeForm
 * @see app/Http/Controllers/SupplierController.php:113
 * @route '/api/suppliers/{supplier}'
 */
-export const show = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -496,7 +496,7 @@ show.definition = {
 * @see app/Http/Controllers/SupplierController.php:113
 * @route '/api/suppliers/{supplier}'
 */
-show.url = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+show.url = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { supplier: args }
     }
@@ -531,7 +531,7 @@ show.url = (args: { supplier: number | { id: number } } | [supplier: number | { 
 * @see app/Http/Controllers/SupplierController.php:113
 * @route '/api/suppliers/{supplier}'
 */
-show.get = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -541,7 +541,7 @@ show.get = (args: { supplier: number | { id: number } } | [supplier: number | { 
 * @see app/Http/Controllers/SupplierController.php:113
 * @route '/api/suppliers/{supplier}'
 */
-show.head = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, queryOptions),
     method: 'head',
 })
@@ -551,7 +551,7 @@ show.head = (args: { supplier: number | { id: number } } | [supplier: number | {
 * @see app/Http/Controllers/SupplierController.php:113
 * @route '/api/suppliers/{supplier}'
 */
-const showForm = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -564,7 +564,7 @@ const showForm = (args: { supplier: number | { id: number } } | [supplier: numbe
 * @see app/Http/Controllers/SupplierController.php:113
 * @route '/api/suppliers/{supplier}'
 */
-showForm.get = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -577,7 +577,7 @@ showForm.get = (args: { supplier: number | { id: number } } | [supplier: number 
 * @see app/Http/Controllers/SupplierController.php:113
 * @route '/api/suppliers/{supplier}'
 */
-showForm.head = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -594,7 +594,7 @@ show.form = showForm
 * @see app/Http/Controllers/SupplierController.php:194
 * @route '/api/suppliers/{supplier}'
 */
-export const update = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -609,7 +609,7 @@ update.definition = {
 * @see app/Http/Controllers/SupplierController.php:194
 * @route '/api/suppliers/{supplier}'
 */
-update.url = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+update.url = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { supplier: args }
     }
@@ -644,7 +644,7 @@ update.url = (args: { supplier: number | { id: number } } | [supplier: number | 
 * @see app/Http/Controllers/SupplierController.php:194
 * @route '/api/suppliers/{supplier}'
 */
-update.put = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -654,7 +654,7 @@ update.put = (args: { supplier: number | { id: number } } | [supplier: number | 
 * @see app/Http/Controllers/SupplierController.php:194
 * @route '/api/suppliers/{supplier}'
 */
-const updateForm = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -669,7 +669,7 @@ const updateForm = (args: { supplier: number | { id: number } } | [supplier: num
 * @see app/Http/Controllers/SupplierController.php:194
 * @route '/api/suppliers/{supplier}'
 */
-updateForm.put = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -686,7 +686,7 @@ update.form = updateForm
 * @see app/Http/Controllers/SupplierController.php:276
 * @route '/api/suppliers/{supplier}'
 */
-export const destroy = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -701,7 +701,7 @@ destroy.definition = {
 * @see app/Http/Controllers/SupplierController.php:276
 * @route '/api/suppliers/{supplier}'
 */
-destroy.url = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+destroy.url = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { supplier: args }
     }
@@ -736,7 +736,7 @@ destroy.url = (args: { supplier: number | { id: number } } | [supplier: number |
 * @see app/Http/Controllers/SupplierController.php:276
 * @route '/api/suppliers/{supplier}'
 */
-destroy.delete = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -746,7 +746,7 @@ destroy.delete = (args: { supplier: number | { id: number } } | [supplier: numbe
 * @see app/Http/Controllers/SupplierController.php:276
 * @route '/api/suppliers/{supplier}'
 */
-const destroyForm = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -761,7 +761,7 @@ const destroyForm = (args: { supplier: number | { id: number } } | [supplier: nu
 * @see app/Http/Controllers/SupplierController.php:276
 * @route '/api/suppliers/{supplier}'
 */
-destroyForm.delete = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -778,7 +778,7 @@ destroy.form = destroyForm
 * @see app/Http/Controllers/SupplierController.php:253
 * @route '/api/suppliers/{supplier}/usage'
 */
-export const checkUsage = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const checkUsage = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: checkUsage.url(args, queryOptions),
     method: 'get',
 })
@@ -793,7 +793,7 @@ checkUsage.definition = {
 * @see app/Http/Controllers/SupplierController.php:253
 * @route '/api/suppliers/{supplier}/usage'
 */
-checkUsage.url = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+checkUsage.url = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { supplier: args }
     }
@@ -828,7 +828,7 @@ checkUsage.url = (args: { supplier: number | { id: number } } | [supplier: numbe
 * @see app/Http/Controllers/SupplierController.php:253
 * @route '/api/suppliers/{supplier}/usage'
 */
-checkUsage.get = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+checkUsage.get = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: checkUsage.url(args, queryOptions),
     method: 'get',
 })
@@ -838,7 +838,7 @@ checkUsage.get = (args: { supplier: number | { id: number } } | [supplier: numbe
 * @see app/Http/Controllers/SupplierController.php:253
 * @route '/api/suppliers/{supplier}/usage'
 */
-checkUsage.head = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+checkUsage.head = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: checkUsage.url(args, queryOptions),
     method: 'head',
 })
@@ -848,7 +848,7 @@ checkUsage.head = (args: { supplier: number | { id: number } } | [supplier: numb
 * @see app/Http/Controllers/SupplierController.php:253
 * @route '/api/suppliers/{supplier}/usage'
 */
-const checkUsageForm = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const checkUsageForm = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: checkUsage.url(
     args,
     queryOptions
@@ -861,7 +861,7 @@ const checkUsageForm = (args: { supplier: number | { id: number } } | [supplier:
 * @see app/Http/Controllers/SupplierController.php:253
 * @route '/api/suppliers/{supplier}/usage'
 */
-checkUsageForm.get = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+checkUsageForm.get = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: checkUsage.url(
     args,
     queryOptions
@@ -874,7 +874,7 @@ checkUsageForm.get = (args: { supplier: number | { id: number } } | [supplier: n
 * @see app/Http/Controllers/SupplierController.php:253
 * @route '/api/suppliers/{supplier}/usage'
 */
-checkUsageForm.head = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+checkUsageForm.head = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: checkUsage.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -891,7 +891,7 @@ checkUsage.form = checkUsageForm
 * @see app/Http/Controllers/SupplierController.php:323
 * @route '/api/suppliers/{supplier}/payments'
 */
-export const payments = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const payments = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: payments.url(args, queryOptions),
     method: 'get',
 })
@@ -906,7 +906,7 @@ payments.definition = {
 * @see app/Http/Controllers/SupplierController.php:323
 * @route '/api/suppliers/{supplier}/payments'
 */
-payments.url = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+payments.url = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { supplier: args }
     }
@@ -941,7 +941,7 @@ payments.url = (args: { supplier: number | { id: number } } | [supplier: number 
 * @see app/Http/Controllers/SupplierController.php:323
 * @route '/api/suppliers/{supplier}/payments'
 */
-payments.get = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+payments.get = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: payments.url(args, queryOptions),
     method: 'get',
 })
@@ -951,7 +951,7 @@ payments.get = (args: { supplier: number | { id: number } } | [supplier: number 
 * @see app/Http/Controllers/SupplierController.php:323
 * @route '/api/suppliers/{supplier}/payments'
 */
-payments.head = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+payments.head = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: payments.url(args, queryOptions),
     method: 'head',
 })
@@ -961,7 +961,7 @@ payments.head = (args: { supplier: number | { id: number } } | [supplier: number
 * @see app/Http/Controllers/SupplierController.php:323
 * @route '/api/suppliers/{supplier}/payments'
 */
-const paymentsForm = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const paymentsForm = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: payments.url(
     args,
     queryOptions
@@ -974,7 +974,7 @@ const paymentsForm = (args: { supplier: number | { id: number } } | [supplier: n
 * @see app/Http/Controllers/SupplierController.php:323
 * @route '/api/suppliers/{supplier}/payments'
 */
-paymentsForm.get = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+paymentsForm.get = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: payments.url(
     args,
     queryOptions
@@ -987,7 +987,7 @@ paymentsForm.get = (args: { supplier: number | { id: number } } | [supplier: num
 * @see app/Http/Controllers/SupplierController.php:323
 * @route '/api/suppliers/{supplier}/payments'
 */
-paymentsForm.head = (args: { supplier: number | { id: number } } | [supplier: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+paymentsForm.head = (args: { supplier: string | number | { id: string | number } } | [supplier: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: payments.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',

@@ -1,3 +1,4 @@
+import { getItemImageUrl } from '@/lib/item-image';
 import { NameCardImage } from '@/components/layout/name-card-image';
 import {
     Dialog,
@@ -17,7 +18,7 @@ interface NameCardWithImage {
     id: number;
     name: string;
     image_path?: string;
-    image_url?: string;
+    image_url?: string | null;
     has_image?: boolean;
     created_at?: string;
     updated_at?: string;
@@ -105,7 +106,15 @@ export const InventoryCardsModal: React.FC<InventoryCardsModalProps> = ({
         
         // Use cached cards directly from name card data (instant)
         if (nameCard.cards && nameCard.cards.length > 0) {
-            setCards(nameCard.cards as unknown as CardType[]);
+            setCards(nameCard.cards.map(card => ({
+                ...card,
+                name_card: {
+                    ...card.name_card,
+                    id: nameCard.id,
+                    name: nameCard.name,
+                    image_url: getItemImageUrl(card) || getItemImageUrl(nameCard),
+                },
+            })) as unknown as CardType[]);
             setCardsError(null);
         } else {
             setCardsError('No cards available for this name card');

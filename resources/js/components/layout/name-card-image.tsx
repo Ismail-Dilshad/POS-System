@@ -1,4 +1,5 @@
 import { Image as ImageIcon } from 'lucide-react';
+import { getItemImageUrl } from '@/lib/item-image';
 import React, { useState } from 'react';
 
 interface CachedImageData {
@@ -13,8 +14,8 @@ interface NameCardImageProps {
     nameCard: {
         id: number;
         name: string;
-        image_url?: string;
-        has_image: boolean;
+        image_url?: string | null;
+        has_image?: boolean;
         image_data?: CachedImageData;
     };
     className?: string;
@@ -28,8 +29,8 @@ export const NameCardImage: React.FC<NameCardImageProps> = ({
     aspectRatio = 'aspect-video',
     useCache = false,
 }) => {
-    const [imageError, setImageError] = useState(false);
-    const [imageLoading, setImageLoading] = useState(true);
+    const [failedUrl, setFailedUrl] = useState<string | null>(null);
+    const [loadedUrl, setLoadedUrl] = useState<string | null>(null);
 
     // Generate robust image URL or use cached data
     const getImageUrl = (): string => {
@@ -38,35 +39,22 @@ export const NameCardImage: React.FC<NameCardImageProps> = ({
             return nameCard.image_data.data_url;
         }
 
-        // Fallback to image_url
-        if (!nameCard.image_url) return '';
-
-        // If already a complete URL, return as is
-        if (nameCard.image_url.startsWith('https://') || nameCard.image_url.startsWith('https://')) {
-            return nameCard.image_url;
-        }
-
-        // If relative URL, make it absolute
-        if (nameCard.image_url.startsWith('/')) {
-            return `${window.location.origin}${nameCard.image_url}`;
-        }
-
-        // If just path, add domain and leading slash
-        return `${window.location.origin}/${nameCard.image_url}`;
+        return getItemImageUrl(nameCard) || '';
     };
 
     const handleImageError = () => {
-        setImageError(true);
-        setImageLoading(false);
+        setFailedUrl(imageUrl);
     };
 
     const handleImageLoad = () => {
-        setImageError(false);
-        setImageLoading(false);
+        setFailedUrl(null);
+        setLoadedUrl(imageUrl);
     };
 
     const imageUrl = getImageUrl();
-    const shouldShowImage = nameCard.has_image && imageUrl && !imageError;
+    const imageError = failedUrl === imageUrl;
+    const imageLoading = loadedUrl !== imageUrl && !imageError;
+    const shouldShowImage = imageUrl && !imageError;
 
     return (
         <div
@@ -83,14 +71,16 @@ export const NameCardImage: React.FC<NameCardImageProps> = ({
 
                     {/* Actual image */}
                     <img
+                        key={imageUrl}
                         src={imageUrl}
                         alt={nameCard.name}
-                        className={`h-full w-full object-cover transition-opacity duration-200 ${
+                        className={`h-full w-full object-contain transition-opacity duration-200 ${
                             imageLoading ? 'opacity-0' : 'opacity-100'
                         }`}
                         onError={handleImageError}
                         onLoad={handleImageLoad}
                         loading="lazy"
+                        decoding="async"
                     />
                 </>
             ) : (

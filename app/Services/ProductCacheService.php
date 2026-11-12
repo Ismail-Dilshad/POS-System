@@ -17,7 +17,7 @@ class ProductCacheService
         try {
             // Safety limit: Maximum 10,000 products to prevent memory exhaustion
             // For larger inventories, consider implementing pagination or lazy loading
-            return Product::select('id', 'name', 'barcode', 'secondary_barcode', 'sell_price', 'stock', 'per_carton', 'carton_price')
+            return Product::select('id', 'name', 'barcode', 'secondary_barcode', 'sell_price', 'stock', 'per_carton', 'carton_price', 'image_path')
                 ->limit(10000)
                 ->get()
                 ->map(function ($product) {
@@ -25,6 +25,7 @@ class ProductCacheService
                         'id' => $product->id,
                         'type' => 'product',
                         'name' => $product->name,
+                        'image_url' => $product->image_url,
                         'barcode' => $product->barcode,
                         'secondary_barcode' => $product->secondary_barcode,
                         'sell_price' => $product->sell_price,
@@ -186,7 +187,7 @@ class ProductCacheService
                 return [];
             }
 
-            $products = Product::select('id', 'name', 'barcode', 'secondary_barcode', 'sell_price', 'stock', 'per_carton', 'carton_price')
+            $products = Product::select('id', 'name', 'barcode', 'secondary_barcode', 'sell_price', 'stock', 'per_carton', 'carton_price', 'image_path')
                 ->where('name', 'LIKE', '%' . $searchTerm . '%')
                 ->get()
                 ->map(function ($product) {
@@ -194,6 +195,7 @@ class ProductCacheService
                         'id' => $product->id,
                         'type' => 'product',
                         'name' => $product->name,
+                        'image_url' => $product->image_url,
                         'barcode' => $product->barcode,
                         'secondary_barcode' => $product->secondary_barcode,
                         'sell_price' => $product->sell_price,
@@ -225,7 +227,7 @@ class ProductCacheService
                 return [];
             }
 
-            $products = Product::select('id', 'name', 'barcode', 'secondary_barcode', 'sell_price', 'stock', 'per_carton', 'carton_price')
+            $products = Product::select('id', 'name', 'barcode', 'secondary_barcode', 'sell_price', 'stock', 'per_carton', 'carton_price', 'image_path')
                 ->where(function ($query) use ($searchTerm) {
                     $query->where('barcode', 'LIKE', $searchTerm . '%')
                           ->orWhere('secondary_barcode', 'LIKE', $searchTerm . '%');
@@ -236,6 +238,7 @@ class ProductCacheService
                         'id' => $product->id,
                         'type' => 'product',
                         'name' => $product->name,
+                        'image_url' => $product->image_url,
                         'barcode' => $product->barcode,
                         'secondary_barcode' => $product->secondary_barcode,
                         'sell_price' => $product->sell_price,

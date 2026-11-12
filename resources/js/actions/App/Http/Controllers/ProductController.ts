@@ -163,7 +163,7 @@ store.form = storeForm
 * @see app/Http/Controllers/ProductController.php:156
 * @route '/api/products/{product}'
 */
-export const show = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -178,7 +178,7 @@ show.definition = {
 * @see app/Http/Controllers/ProductController.php:156
 * @route '/api/products/{product}'
 */
-show.url = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+show.url = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { product: args }
     }
@@ -213,7 +213,7 @@ show.url = (args: { product: number | { id: number } } | [product: number | { id
 * @see app/Http/Controllers/ProductController.php:156
 * @route '/api/products/{product}'
 */
-show.get = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -223,7 +223,7 @@ show.get = (args: { product: number | { id: number } } | [product: number | { id
 * @see app/Http/Controllers/ProductController.php:156
 * @route '/api/products/{product}'
 */
-show.head = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, queryOptions),
     method: 'head',
 })
@@ -233,7 +233,7 @@ show.head = (args: { product: number | { id: number } } | [product: number | { i
 * @see app/Http/Controllers/ProductController.php:156
 * @route '/api/products/{product}'
 */
-const showForm = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -246,7 +246,7 @@ const showForm = (args: { product: number | { id: number } } | [product: number 
 * @see app/Http/Controllers/ProductController.php:156
 * @route '/api/products/{product}'
 */
-showForm.get = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -259,7 +259,7 @@ showForm.get = (args: { product: number | { id: number } } | [product: number | 
 * @see app/Http/Controllers/ProductController.php:156
 * @route '/api/products/{product}'
 */
-showForm.head = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -276,7 +276,7 @@ show.form = showForm
 * @see app/Http/Controllers/ProductController.php:178
 * @route '/api/products/{product}'
 */
-export const update = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -291,7 +291,7 @@ update.definition = {
 * @see app/Http/Controllers/ProductController.php:178
 * @route '/api/products/{product}'
 */
-update.url = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+update.url = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { product: args }
     }
@@ -326,7 +326,7 @@ update.url = (args: { product: number | { id: number } } | [product: number | { 
 * @see app/Http/Controllers/ProductController.php:178
 * @route '/api/products/{product}'
 */
-update.put = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -336,7 +336,7 @@ update.put = (args: { product: number | { id: number } } | [product: number | { 
 * @see app/Http/Controllers/ProductController.php:178
 * @route '/api/products/{product}'
 */
-const updateForm = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -351,7 +351,7 @@ const updateForm = (args: { product: number | { id: number } } | [product: numbe
 * @see app/Http/Controllers/ProductController.php:178
 * @route '/api/products/{product}'
 */
-updateForm.put = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -368,7 +368,7 @@ update.form = updateForm
 * @see app/Http/Controllers/ProductController.php:234
 * @route '/api/products/{product}'
 */
-export const destroy = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -383,7 +383,7 @@ destroy.definition = {
 * @see app/Http/Controllers/ProductController.php:234
 * @route '/api/products/{product}'
 */
-destroy.url = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+destroy.url = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { product: args }
     }
@@ -418,7 +418,7 @@ destroy.url = (args: { product: number | { id: number } } | [product: number | {
 * @see app/Http/Controllers/ProductController.php:234
 * @route '/api/products/{product}'
 */
-destroy.delete = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -428,7 +428,7 @@ destroy.delete = (args: { product: number | { id: number } } | [product: number 
 * @see app/Http/Controllers/ProductController.php:234
 * @route '/api/products/{product}'
 */
-const destroyForm = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -443,7 +443,7 @@ const destroyForm = (args: { product: number | { id: number } } | [product: numb
 * @see app/Http/Controllers/ProductController.php:234
 * @route '/api/products/{product}'
 */
-destroyForm.delete = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -866,7 +866,7 @@ exportMethod.form = exportMethodForm
 * @see app/Http/Controllers/ProductController.php:398
 * @route '/api/products/{product}/toggle-pos'
 */
-export const togglePosVisibility = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+export const togglePosVisibility = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: togglePosVisibility.url(args, queryOptions),
     method: 'patch',
 })
@@ -881,7 +881,7 @@ togglePosVisibility.definition = {
 * @see app/Http/Controllers/ProductController.php:398
 * @route '/api/products/{product}/toggle-pos'
 */
-togglePosVisibility.url = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+togglePosVisibility.url = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { product: args }
     }
@@ -916,7 +916,7 @@ togglePosVisibility.url = (args: { product: number | { id: number } } | [product
 * @see app/Http/Controllers/ProductController.php:398
 * @route '/api/products/{product}/toggle-pos'
 */
-togglePosVisibility.patch = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+togglePosVisibility.patch = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: togglePosVisibility.url(args, queryOptions),
     method: 'patch',
 })
@@ -926,7 +926,7 @@ togglePosVisibility.patch = (args: { product: number | { id: number } } | [produ
 * @see app/Http/Controllers/ProductController.php:398
 * @route '/api/products/{product}/toggle-pos'
 */
-const togglePosVisibilityForm = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const togglePosVisibilityForm = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: togglePosVisibility.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -941,7 +941,7 @@ const togglePosVisibilityForm = (args: { product: number | { id: number } } | [p
 * @see app/Http/Controllers/ProductController.php:398
 * @route '/api/products/{product}/toggle-pos'
 */
-togglePosVisibilityForm.patch = (args: { product: number | { id: number } } | [product: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+togglePosVisibilityForm.patch = (args: { product: string | number | { id: string | number } } | [product: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: togglePosVisibility.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',

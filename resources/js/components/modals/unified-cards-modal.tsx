@@ -1,3 +1,4 @@
+import { getItemImageUrl } from '@/lib/item-image';
 import { NameCardImage } from '@/components/layout/name-card-image';
 import {
     Dialog,
@@ -88,7 +89,15 @@ export const UnifiedCardsModal: React.FC<UnifiedCardsModalProps> = ({
         
         // Use cached cards directly from name card data (instant)
         if (nameCard.cards && nameCard.cards.length > 0) {
-            setCards(nameCard.cards as unknown as CardType[]);
+            setCards(nameCard.cards.map(card => ({
+                ...card,
+                name_card: {
+                    ...card.name_card,
+                    id: nameCard.id,
+                    name: nameCard.name,
+                    image_url: getItemImageUrl(card) || getItemImageUrl(nameCard),
+                },
+            })) as unknown as CardType[]);
             setSelectedIndex(0);
             setCardsError(null);
         } else {

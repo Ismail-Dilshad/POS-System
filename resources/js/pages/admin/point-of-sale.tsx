@@ -1,3 +1,5 @@
+import { getItemImageUrl } from '@/lib/item-image';
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import {
     BarcodeSearchFilter,
     type BarcodeSearchFilterRef,
@@ -895,6 +897,7 @@ export default function PointOfSale() {
 
         const newItem: CartItem = {
             id: itemWithId.id,
+            image_url: itemWithId.image_url ?? null,
             barcode: itemWithId.barcode!,
             name: itemWithId.name!,
             price: itemWithId.price!,
@@ -998,6 +1001,7 @@ export default function PointOfSale() {
                             const newTotal = Number(cartItem.price) * combinedQuantity;
                             mergedItem = {
                                 ...cartItem,
+                                image_url: newItem.image_url ?? cartItem.image_url,
                                 quantity: combinedQuantity,
                                 total: newTotal,
                                 
@@ -1064,6 +1068,7 @@ export default function PointOfSale() {
             id: `${product.type}_${product.id}_${Date.now()}`, // Unique ID based on type and product ID
             barcode: barcode,
             name: product.name,
+            image_url: product.image_url ?? null,
             price: product.sell_price,
             quantity: 1,
             isScaleProduct: product.type === 'scale_product',
@@ -1389,6 +1394,7 @@ export default function PointOfSale() {
     };
 
     const handleScale = () => {
+        if (!SCALE_PRODUCTS_ENABLED) return;
         setScaleModalOpen(true);
     };
 
@@ -1463,7 +1469,7 @@ export default function PointOfSale() {
 
                     e.preventDefault();
 
-                    if (!scaleModalOpen) {
+                    if (SCALE_PRODUCTS_ENABLED && !scaleModalOpen) {
                         setScaleModalOpen(true);
                     }
                     break;
@@ -1763,7 +1769,7 @@ export default function PointOfSale() {
                 <div className="w-full flex-shrink-0 rounded-md bg-card text-card-foreground shadow-[0_4px_8px_0_rgba(0,0,0,0.2),0_2px_4px_0_rgba(0,0,0,0.1)] dark:shadow-[0_4px_8px_0_rgba(0,0,0,0.4),0_2px_4px_0_rgba(0,0,0,0.3)]">
                     <div className="p-6 relative">
                         {/* Filter Grid - 5 columns, all equal size */}
-                        <div className="grid grid-cols-5 items-end gap-4">
+                        <div className={`grid ${SCALE_PRODUCTS_ENABLED ? 'grid-cols-5' : 'grid-cols-4'} items-end gap-4`}>
                             {/* Barcode Search */}
                             <div className="space-y-2 rounded-md p-2 transition-colors duration-200 hover:bg-blue-50 dark:hover:bg-blue-900/20">
                                 <div className="flex items-center justify-between">
@@ -1797,7 +1803,7 @@ export default function PointOfSale() {
                             </div>
 
                             {/* Scale Filter */}
-                            <div className="space-y-2 rounded-md p-2 transition-colors duration-200 hover:bg-cyan-50 dark:hover:bg-cyan-900/20">
+                            {SCALE_PRODUCTS_ENABLED && (<div className="space-y-2 rounded-md p-2 transition-colors duration-200 hover:bg-cyan-50 dark:hover:bg-cyan-900/20">
                                 <Label className="text-sm font-medium text-cyan-600 dark:text-cyan-400">
                                     &nbsp;
                                 </Label>
@@ -1811,7 +1817,7 @@ export default function PointOfSale() {
                                     {t('point_of_sale.scale')}
                                     <Kbd>T</Kbd>
                                 </Button>
-                            </div>
+                            </div>)}
 
                             {/* Cards Filter */}
                             <div className="space-y-2 rounded-md p-2 transition-colors duration-200 hover:bg-emerald-50 dark:hover:bg-emerald-900/20">
@@ -1940,7 +1946,7 @@ export default function PointOfSale() {
                 </Suspense>
 
                 {/* Scale Modal */}
-                <Suspense fallback={null}>
+                {SCALE_PRODUCTS_ENABLED && (<Suspense fallback={null}>
                     <ScaleModal
                         isOpen={scaleModalOpen}
                         onClose={() => {
@@ -1972,7 +1978,7 @@ export default function PointOfSale() {
                             });
                         }}
                     />
-                </Suspense>
+                </Suspense>)}
 
                 {/* Unified Cards Modal */}
                 <Suspense fallback={null}>
@@ -1992,6 +1998,7 @@ export default function PointOfSale() {
                             addItemToCart({
                                 id: `card_${card.id}_${Date.now()}`, // Unique ID for card products
                                 barcode: `CARD_${card.id}`,
+                                image_url: getItemImageUrl(card),
                                 name: `${card.name_card?.name || 'Card'} - Card #${card.id}`,
                                 price: card.sell_price, // Will be normalized in addItemToCart
                                 quantity: 1,

@@ -1,3 +1,4 @@
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { DatePicker } from '@/components/ui/date-picker';
@@ -410,12 +411,12 @@ export function ReportsFilter({
                             >
                                 {t('reports_filter.normal_products')}
                             </SelectItem>
-                            <SelectItem
+                            {SCALE_PRODUCTS_ENABLED && (<SelectItem
                                 value="scale"
                                 className="focus:bg-primary/5 focus:text-primary data-[highlighted]:bg-primary/5 data-[highlighted]:text-primary data-[state=checked]:bg-primary/10 data-[state=checked]:text-primary dark:focus:bg-primary/95/20 dark:focus:text-primary/10 dark:data-[highlighted]:bg-primary/95/20 dark:data-[highlighted]:text-primary/10 dark:data-[state=checked]:bg-primary/90/30 dark:data-[state=checked]:text-primary/10"
                             >
                                 {t('reports_filter.scale_products')}
-                            </SelectItem>
+                            </SelectItem>)}
                             {mode === 'transaction' && (
                                 <SelectItem
                                     value="card"

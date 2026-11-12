@@ -1,3 +1,4 @@
+import { ItemThumbnail } from '@/components/layout/item-thumbnail';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,7 +18,6 @@ import {
     Barcode,
     CheckCircle,
     DollarSign,
-    Package,
 } from 'lucide-react';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 
@@ -179,7 +179,7 @@ export function DuplicateBarcodeModal({
                                 <div className="flex items-start justify-between">
                                     <div className="min-w-0 flex-1">
                                         <div className="mb-2 flex items-center gap-2">
-                                            <Package className="h-4 w-4 flex-shrink-0 text-muted-foreground" />
+                                              <ItemThumbnail url={product.image_url} name={product.name} className="size-10" />
                                             <h3 className="truncate text-sm font-medium">
                                                 {product.name}
                                             </h3>

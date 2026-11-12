@@ -204,6 +204,9 @@ export interface Expense {
 }
 
 export interface NameCard {
+    image_url?: string | null;
+    has_image?: boolean;
+    image_data?: { data_url: string };
     id: number;
     name: string;
     created_at: string;

@@ -255,7 +255,7 @@ search.form = searchForm
 * @see app/Http/Controllers/PurchaseController.php:768
 * @route '/api/purchases/{purchase}/receive'
 */
-export const markAsReceived = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+export const markAsReceived = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: markAsReceived.url(args, queryOptions),
     method: 'patch',
 })
@@ -270,7 +270,7 @@ markAsReceived.definition = {
 * @see app/Http/Controllers/PurchaseController.php:768
 * @route '/api/purchases/{purchase}/receive'
 */
-markAsReceived.url = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+markAsReceived.url = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { purchase: args }
     }
@@ -305,7 +305,7 @@ markAsReceived.url = (args: { purchase: number | { id: number } } | [purchase: n
 * @see app/Http/Controllers/PurchaseController.php:768
 * @route '/api/purchases/{purchase}/receive'
 */
-markAsReceived.patch = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
+markAsReceived.patch = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'patch'> => ({
     url: markAsReceived.url(args, queryOptions),
     method: 'patch',
 })
@@ -315,7 +315,7 @@ markAsReceived.patch = (args: { purchase: number | { id: number } } | [purchase:
 * @see app/Http/Controllers/PurchaseController.php:768
 * @route '/api/purchases/{purchase}/receive'
 */
-const markAsReceivedForm = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const markAsReceivedForm = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: markAsReceived.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -330,7 +330,7 @@ const markAsReceivedForm = (args: { purchase: number | { id: number } } | [purch
 * @see app/Http/Controllers/PurchaseController.php:768
 * @route '/api/purchases/{purchase}/receive'
 */
-markAsReceivedForm.patch = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+markAsReceivedForm.patch = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: markAsReceived.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PATCH',
@@ -849,7 +849,7 @@ store.form = storeForm
 * @see app/Http/Controllers/PurchaseController.php:595
 * @route '/api/purchases/{purchase}'
 */
-export const show = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -864,7 +864,7 @@ show.definition = {
 * @see app/Http/Controllers/PurchaseController.php:595
 * @route '/api/purchases/{purchase}'
 */
-show.url = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+show.url = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { purchase: args }
     }
@@ -899,7 +899,7 @@ show.url = (args: { purchase: number | { id: number } } | [purchase: number | { 
 * @see app/Http/Controllers/PurchaseController.php:595
 * @route '/api/purchases/{purchase}'
 */
-show.get = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -909,7 +909,7 @@ show.get = (args: { purchase: number | { id: number } } | [purchase: number | { 
 * @see app/Http/Controllers/PurchaseController.php:595
 * @route '/api/purchases/{purchase}'
 */
-show.head = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, queryOptions),
     method: 'head',
 })
@@ -919,7 +919,7 @@ show.head = (args: { purchase: number | { id: number } } | [purchase: number | {
 * @see app/Http/Controllers/PurchaseController.php:595
 * @route '/api/purchases/{purchase}'
 */
-const showForm = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -932,7 +932,7 @@ const showForm = (args: { purchase: number | { id: number } } | [purchase: numbe
 * @see app/Http/Controllers/PurchaseController.php:595
 * @route '/api/purchases/{purchase}'
 */
-showForm.get = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -945,7 +945,7 @@ showForm.get = (args: { purchase: number | { id: number } } | [purchase: number 
 * @see app/Http/Controllers/PurchaseController.php:595
 * @route '/api/purchases/{purchase}'
 */
-showForm.head = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -962,7 +962,7 @@ show.form = showForm
 * @see app/Http/Controllers/PurchaseController.php:605
 * @route '/api/purchases/{purchase}'
 */
-export const update = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -977,7 +977,7 @@ update.definition = {
 * @see app/Http/Controllers/PurchaseController.php:605
 * @route '/api/purchases/{purchase}'
 */
-update.url = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+update.url = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { purchase: args }
     }
@@ -1012,7 +1012,7 @@ update.url = (args: { purchase: number | { id: number } } | [purchase: number | 
 * @see app/Http/Controllers/PurchaseController.php:605
 * @route '/api/purchases/{purchase}'
 */
-update.put = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -1022,7 +1022,7 @@ update.put = (args: { purchase: number | { id: number } } | [purchase: number | 
 * @see app/Http/Controllers/PurchaseController.php:605
 * @route '/api/purchases/{purchase}'
 */
-const updateForm = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -1037,7 +1037,7 @@ const updateForm = (args: { purchase: number | { id: number } } | [purchase: num
 * @see app/Http/Controllers/PurchaseController.php:605
 * @route '/api/purchases/{purchase}'
 */
-updateForm.put = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -1054,7 +1054,7 @@ update.form = updateForm
 * @see app/Http/Controllers/PurchaseController.php:705
 * @route '/api/purchases/{purchase}'
 */
-export const destroy = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -1069,7 +1069,7 @@ destroy.definition = {
 * @see app/Http/Controllers/PurchaseController.php:705
 * @route '/api/purchases/{purchase}'
 */
-destroy.url = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+destroy.url = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { purchase: args }
     }
@@ -1104,7 +1104,7 @@ destroy.url = (args: { purchase: number | { id: number } } | [purchase: number |
 * @see app/Http/Controllers/PurchaseController.php:705
 * @route '/api/purchases/{purchase}'
 */
-destroy.delete = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -1114,7 +1114,7 @@ destroy.delete = (args: { purchase: number | { id: number } } | [purchase: numbe
 * @see app/Http/Controllers/PurchaseController.php:705
 * @route '/api/purchases/{purchase}'
 */
-const destroyForm = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -1129,7 +1129,7 @@ const destroyForm = (args: { purchase: number | { id: number } } | [purchase: nu
 * @see app/Http/Controllers/PurchaseController.php:705
 * @route '/api/purchases/{purchase}'
 */
-destroyForm.delete = (args: { purchase: number | { id: number } } | [purchase: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { purchase: string | number | { id: string | number } } | [purchase: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',

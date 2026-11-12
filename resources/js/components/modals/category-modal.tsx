@@ -1,3 +1,4 @@
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import { Button } from '@/components/ui/button';
 import { DeleteModal } from '@/components/ui/delete-modal';
 import {
@@ -181,7 +182,7 @@ export function CategoryModal({ isOpen, onClose, onChanged }: CategoryModalProps
                             plural: totalCount > 1 ? 's' : '',
                         },
                     );
-                    if (productCount > 0 && scaleProductCount > 0) {
+                    if (SCALE_PRODUCTS_ENABLED && productCount > 0 && scaleProductCount > 0) {
                         warningMessage +=
                             ' (' +
                             t('category_modal.messages.products_count', {
@@ -194,7 +195,7 @@ export function CategoryModal({ isOpen, onClose, onChanged }: CategoryModalProps
                                 plural: scaleProductCount > 1 ? 's' : '',
                             }) +
                             ')';
-                    } else if (productCount > 0) {
+                    } else if (SCALE_PRODUCTS_ENABLED && productCount > 0) {
                         warningMessage +=
                             ' (' +
                             t('category_modal.messages.products_count', {
@@ -202,7 +203,7 @@ export function CategoryModal({ isOpen, onClose, onChanged }: CategoryModalProps
                                 plural: productCount > 1 ? 's' : '',
                             }) +
                             ')';
-                    } else if (scaleProductCount > 0) {
+                    } else if (SCALE_PRODUCTS_ENABLED && scaleProductCount > 0) {
                         warningMessage +=
                             ' (' +
                             t('category_modal.messages.scale_products_count', {

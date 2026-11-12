@@ -1,3 +1,4 @@
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -1281,12 +1282,12 @@ export function AddPurchaseModal({
                                                     {t('add_purchase_modal.normal_product')}
                                                 </div>
                                             </SelectItem>
-                                            <SelectItem value="scale_product">
+                                            {SCALE_PRODUCTS_ENABLED && (<SelectItem value="scale_product">
                                                 <div className="flex items-center gap-2">
                                                     <Scale className="h-4 w-4" />
                                                     {t('add_purchase_modal.scale_product')}
                                                 </div>
-                                            </SelectItem>
+                                            </SelectItem>)}
                                         </SelectContent>
                                     </Select>
                                 </div>

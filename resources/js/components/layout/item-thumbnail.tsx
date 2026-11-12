@@ -1,18 +1,21 @@
 import { useTranslation } from '@/hooks/use-translation';
+import { cn } from '@/lib/utils';
 import { ImageOff } from 'lucide-react';
 import { useState } from 'react';
 
 export function ItemThumbnail({
     url,
     name,
+    className,
 }: {
     url?: string | null;
     name: string;
+    className?: string;
 }) {
     const { t } = useTranslation();
     const [failedUrl, setFailedUrl] = useState<string | null>(null);
     return (
-        <div className="flex size-12 items-center justify-center overflow-hidden rounded-md border bg-muted/30">
+        <div className={cn('flex size-12 shrink-0 items-center justify-center overflow-hidden rounded-md border bg-muted/30', className)}>
             {url && failedUrl !== url ? (
                 <img
                     src={url}

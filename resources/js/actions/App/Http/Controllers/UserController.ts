@@ -163,7 +163,7 @@ store.form = storeForm
 * @see app/Http/Controllers/UserController.php:116
 * @route '/api/users/{user}'
 */
-export const show = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+export const show = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -178,7 +178,7 @@ show.definition = {
 * @see app/Http/Controllers/UserController.php:116
 * @route '/api/users/{user}'
 */
-show.url = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+show.url = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { user: args }
     }
@@ -213,7 +213,7 @@ show.url = (args: { user: number | { id: number } } | [user: number | { id: numb
 * @see app/Http/Controllers/UserController.php:116
 * @route '/api/users/{user}'
 */
-show.get = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
+show.get = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
     url: show.url(args, queryOptions),
     method: 'get',
 })
@@ -223,7 +223,7 @@ show.get = (args: { user: number | { id: number } } | [user: number | { id: numb
 * @see app/Http/Controllers/UserController.php:116
 * @route '/api/users/{user}'
 */
-show.head = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
+show.head = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
     url: show.url(args, queryOptions),
     method: 'head',
 })
@@ -233,7 +233,7 @@ show.head = (args: { user: number | { id: number } } | [user: number | { id: num
 * @see app/Http/Controllers/UserController.php:116
 * @route '/api/users/{user}'
 */
-const showForm = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+const showForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -246,7 +246,7 @@ const showForm = (args: { user: number | { id: number } } | [user: number | { id
 * @see app/Http/Controllers/UserController.php:116
 * @route '/api/users/{user}'
 */
-showForm.get = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.get = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(
     args,
     queryOptions
@@ -259,7 +259,7 @@ showForm.get = (args: { user: number | { id: number } } | [user: number | { id: 
 * @see app/Http/Controllers/UserController.php:116
 * @route '/api/users/{user}'
 */
-showForm.head = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
+showForm.head = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
     action: show.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'HEAD',
@@ -276,7 +276,7 @@ show.form = showForm
 * @see app/Http/Controllers/UserController.php:134
 * @route '/api/users/{user}'
 */
-export const update = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+export const update = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -291,7 +291,7 @@ update.definition = {
 * @see app/Http/Controllers/UserController.php:134
 * @route '/api/users/{user}'
 */
-update.url = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+update.url = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { user: args }
     }
@@ -326,7 +326,7 @@ update.url = (args: { user: number | { id: number } } | [user: number | { id: nu
 * @see app/Http/Controllers/UserController.php:134
 * @route '/api/users/{user}'
 */
-update.put = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
+update.put = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'put'> => ({
     url: update.url(args, queryOptions),
     method: 'put',
 })
@@ -336,7 +336,7 @@ update.put = (args: { user: number | { id: number } } | [user: number | { id: nu
 * @see app/Http/Controllers/UserController.php:134
 * @route '/api/users/{user}'
 */
-const updateForm = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const updateForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -351,7 +351,7 @@ const updateForm = (args: { user: number | { id: number } } | [user: number | { 
 * @see app/Http/Controllers/UserController.php:134
 * @route '/api/users/{user}'
 */
-updateForm.put = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+updateForm.put = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: update.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'PUT',
@@ -368,7 +368,7 @@ update.form = updateForm
 * @see app/Http/Controllers/UserController.php:195
 * @route '/api/users/{user}'
 */
-export const destroy = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+export const destroy = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -383,7 +383,7 @@ destroy.definition = {
 * @see app/Http/Controllers/UserController.php:195
 * @route '/api/users/{user}'
 */
-destroy.url = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions) => {
+destroy.url = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions) => {
     if (typeof args === 'string' || typeof args === 'number') {
         args = { user: args }
     }
@@ -418,7 +418,7 @@ destroy.url = (args: { user: number | { id: number } } | [user: number | { id: n
 * @see app/Http/Controllers/UserController.php:195
 * @route '/api/users/{user}'
 */
-destroy.delete = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
+destroy.delete = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
     url: destroy.url(args, queryOptions),
     method: 'delete',
 })
@@ -428,7 +428,7 @@ destroy.delete = (args: { user: number | { id: number } } | [user: number | { id
 * @see app/Http/Controllers/UserController.php:195
 * @route '/api/users/{user}'
 */
-const destroyForm = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+const destroyForm = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',
@@ -443,7 +443,7 @@ const destroyForm = (args: { user: number | { id: number } } | [user: number | {
 * @see app/Http/Controllers/UserController.php:195
 * @route '/api/users/{user}'
 */
-destroyForm.delete = (args: { user: number | { id: number } } | [user: number | { id: number } ] | number | { id: number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
+destroyForm.delete = (args: { user: string | number | { id: string | number } } | [user: string | number | { id: string | number } ] | string | number | { id: string | number }, queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
     action: destroy.url(args, {
         [queryOptions?.mergeQuery ? 'mergeQuery' : 'query']: {
             _method: 'DELETE',

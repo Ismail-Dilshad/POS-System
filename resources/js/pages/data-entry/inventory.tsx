@@ -1,3 +1,5 @@
+import { getItemImageUrl } from '@/lib/item-image';
+import { SCALE_PRODUCTS_ENABLED } from '@/config/features';
 import { ItemThumbnail } from '@/components/layout/item-thumbnail';
 import { AddCardModal } from '@/components/modals/add-card-modal';
 import { AdjustModal } from '@/components/modals/adjust-modal';
@@ -76,7 +78,7 @@ interface NameCard {
     id: number;
     name: string;
     image_path?: string;
-    image_url?: string;
+    image_url?: string | null;
     has_image?: boolean;
     created_at: string;
 }
@@ -429,7 +431,7 @@ export default function Inventory() {
                 // Convert Product/ScaleProduct/Card to InventoryItem
                 const newInventoryItem: InventoryItem = {
                     id: newProduct.id,
-                    image_url: typeof newProduct.image_url === 'string' ? newProduct.image_url : null,
+                    image_url: getItemImageUrl(newProduct),
                     name:
                         'name' in newProduct
                             ? String(newProduct.name)
@@ -820,7 +822,7 @@ export default function Inventory() {
                 [],
                 ['PRODUCT TYPE BREAKDOWN'],
                 ['Regular Products', summary.regularProducts],
-                ['Scale Products', summary.scaleProducts],
+                ...(SCALE_PRODUCTS_ENABLED ? [['Scale Products', summary.scaleProducts]] : []),
                 ['Card Products (excl. from totals)', summary.cardProducts],
                 [],
             ];
@@ -929,7 +931,9 @@ export default function Inventory() {
                 normal: comprehensiveStats.total_products || 0,
                 scale: comprehensiveStats.total_scale_products || 0,
                 card: comprehensiveStats.total_cards || 0,
-                total: comprehensiveStats.total_items || 0,
+                total: SCALE_PRODUCTS_ENABLED
+                    ? comprehensiveStats.total_items || 0
+                    : Number(comprehensiveStats.total_products || 0) + Number(comprehensiveStats.total_cards || 0),
             };
         }
 
@@ -946,9 +950,9 @@ export default function Inventory() {
         // No fallback - statistics should always be loaded
         if (comprehensiveStats) {
             return {
-                inStock: comprehensiveStats.active_items || 0,
-                lowStock: comprehensiveStats.low_stock_items || 0,
-                outOfStock: comprehensiveStats.out_of_stock_items || 0,
+                inStock: SCALE_PRODUCTS_ENABLED ? comprehensiveStats.active_items || 0 : Number(comprehensiveStats.active_products || 0) + Number(comprehensiveStats.active_cards || 0),
+                lowStock: SCALE_PRODUCTS_ENABLED ? comprehensiveStats.low_stock_items || 0 : comprehensiveStats.low_stock_products || 0,
+                outOfStock: SCALE_PRODUCTS_ENABLED ? comprehensiveStats.out_of_stock_items || 0 : comprehensiveStats.out_of_stock_products || 0,
             };
         }
 
@@ -1118,7 +1122,7 @@ export default function Inventory() {
             key: 'image_url',
             header: t('item_images.column'),
             accessor: 'image_url',
-            render: (_value, row) => <ItemThumbnail url={row.image_url} name={row.name} />,
+            render: (_value, row) => <ItemThumbnail url={getItemImageUrl(row)} name={row.name} />,
         },
         {
             key: 'name',
@@ -1520,6 +1524,14 @@ export default function Inventory() {
             },
     ];
 
+    // Hide these table columns while retaining their data and renderers.
+    const visibleInventoryColumns = inventoryColumns.filter(
+        ({ key }) => ![
+            'expire_date', 'per_carton', 'profit_margin',
+            'updated_at', 'created_at', 'product_type',
+        ].includes(key),
+    );
+
     // Inventory item action handlers
     const handleViewItem = useCallback((item: InventoryItem) => {
         dispatchModal({ type: 'OPEN_PRODUCT_DETAILS', data: item });
@@ -1682,6 +1694,7 @@ export default function Inventory() {
 
                 const productData = {
                     id: item.id,
+                    image_url: getItemImageUrl(item),
                     name: item.name,
                     category_id:
                         item.original_data?.category_id || category?.id || null,
@@ -2086,7 +2099,7 @@ export default function Inventory() {
                     <Plus className="mr-2 h-4 w-4" />
                         {t('inventory.buttons.add_card')}
                 </Button>
-                <Button
+                {SCALE_PRODUCTS_ENABLED && (<Button
                         variant="outline"
                         size="sm"
                         onClick={() =>
@@ -2099,7 +2112,7 @@ export default function Inventory() {
                     >
                         <Scale className="mr-2 h-4 w-4" />
                         {t('inventory.buttons.add_scale_product')}
-                </Button>
+                </Button>)}
                 <Button
                         size="sm"
                         onClick={() =>
@@ -2165,7 +2178,7 @@ export default function Inventory() {
                     />
 
                     {/* Scale Products Count */}
-                    <StatCard
+                    {SCALE_PRODUCTS_ENABLED && (<StatCard
                         title={t('inventory.stat_cards.scale_products')}
                         value={productTypeCounts.scale.toString()}
                         description={t('inventory.stat_cards.weight_products')}
@@ -2176,7 +2189,7 @@ export default function Inventory() {
                             variant: 'secondary',
                             color: 'green',
                         }}
-                    />
+                    />)}
 
                     {/* Cards Product Count */}
                     <StatCard
@@ -2251,8 +2264,8 @@ export default function Inventory() {
                     {/* Total Value (Products + Scale Products Only) */}
                 <StatCard
                         title={t('inventory.stat_cards.total_value')}
-                        value={valueCalculations.totalValue.toString()}
-                        description={t('inventory.stat_cards.products_scale')}
+                        value={(SCALE_PRODUCTS_ENABLED ? valueCalculations.totalValue : valueCalculations.normalValue).toString()}
+                        description={t(SCALE_PRODUCTS_ENABLED ? 'inventory.stat_cards.products_scale' : 'inventory.stat_cards.regular_products')}
                         icon={DollarSign}
                         color="teal"
                         isCurrency={true}
@@ -2281,7 +2294,7 @@ export default function Inventory() {
                     />
 
                     {/* Scale Products Value */}
-                <StatCard
+                {SCALE_PRODUCTS_ENABLED && (<StatCard
                         title={t('inventory.stat_cards.scale_products_value')}
                         value={valueCalculations.scaleValue.toString()}
                         description={t('inventory.stat_cards.weight_products')}
@@ -2294,10 +2307,10 @@ export default function Inventory() {
                             variant: 'default',
                             color: 'green',
                         }}
-                    />
+                    />)}
 
                     {/* Scale Products Stock (kg) */}
-                <StatCard
+                {SCALE_PRODUCTS_ENABLED && (<StatCard
                         title={t('inventory.stat_cards.scale_stock_kg')}
                         value={Number(scaleStockTotal).toFixed(1)}
                         description={t('inventory.stat_cards.total_weight')}
@@ -2308,7 +2321,7 @@ export default function Inventory() {
                             variant: 'secondary',
                             color: 'green',
                         }}
-                    />
+                    />)}
 
                     {/* Expiring in 30 Days */}
                     <StatCard
@@ -2355,7 +2368,7 @@ export default function Inventory() {
 
                 {/* Filter Component */}
                 <FilterComponent
-                    filters={filters}
+                    filters={SCALE_PRODUCTS_ENABLED || !['scale', 'scale_product'].includes(filters.productType || '') ? filters : { ...filters, productType: 'all' }}
                     onFiltersChange={handleFiltersChange}
                     categories={categories}
                     suppliers={suppliers}
@@ -2382,7 +2395,7 @@ export default function Inventory() {
                         productTypeOptions: [
                             { value: 'all', label: t('inventory.filter.all_types') },
                             { value: 'product', label: t('inventory.filter.product') },
-                            { value: 'scale_product', label: t('inventory.filter.scale_product') },
+                            ...(SCALE_PRODUCTS_ENABLED ? [{ value: 'scale_product', label: t('inventory.filter.scale_product') }] : []),
                             { value: 'card', label: t('inventory.filter.card') },
                         ],
                     }}
@@ -2415,7 +2428,7 @@ export default function Inventory() {
                         </div>
                     }
                     data={sortedInventoryItems}
-                    columns={inventoryColumns}
+                    columns={visibleInventoryColumns}
                 loading={loading}
                     emptyMessage={
                         Object.keys(filters).length > 0
@@ -2436,8 +2449,8 @@ export default function Inventory() {
                     onPageChange: handlePageChange,
                 }}
                     virtualScrolling={totalItems > 100}
-                    rowHeight={60}
-                    className="bg-background"
+                    rowHeight={104}
+                    className="bg-background [&_th]:text-sm [&_th]:font-semibold [&_th]:py-4 [&_td]:text-base [&_td]:py-4 [&_td_span]:text-base"
                 />
             </div>
 
@@ -2512,7 +2525,7 @@ export default function Inventory() {
                     )}
 
                     {/* Scale Product Modal */}
-                    {modalState.type === 'scaleProduct' && (
+                    {SCALE_PRODUCTS_ENABLED && modalState.type === 'scaleProduct' && (
             <ScaleProductModal
                             isOpen={true}
                             onClose={(scaleProductData?: ScaleProduct) => {

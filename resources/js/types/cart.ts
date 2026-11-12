@@ -4,6 +4,7 @@
  */
 
 export interface CartItem {
+    image_url?: string | null;
     id: string;
     barcode: string;
     name: string;

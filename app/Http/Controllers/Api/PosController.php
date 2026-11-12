@@ -40,6 +40,7 @@ class PosController extends Controller
                     'u' => $product['plu'] ?? null,  // plu (scale)
                     'c' => $product['per_carton'] ?? null, // per_carton
                     'r' => $product['carton_price'] ?? null, // carton_price
+                    'm' => $product['image_url'] ?? null, // image URL
                 ];
             }, $allProducts);
             

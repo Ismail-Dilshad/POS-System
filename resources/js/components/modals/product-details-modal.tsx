@@ -1,4 +1,6 @@
 import { Badge } from '@/components/ui/badge';
+import { ItemThumbnail } from '@/components/layout/item-thumbnail';
+import { getItemImageUrl } from '@/lib/item-image';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import {
@@ -426,6 +428,9 @@ export function ProductDetailsModal({
                                         </CardTitle>
                                     </CardHeader>
                                     <CardContent className="space-y-1.5 px-2.5 pb-2.5 text-sm">
+                                        <div className="flex justify-center pb-3">
+                                            <ItemThumbnail url={getItemImageUrl(item)} name={item.name} className="size-32 sm:size-40" />
+                                        </div>
                                         <InfoRow
                                             icon={<Tag className="h-4 w-4 shrink-0" />}
                                             label={t(

@@ -26,7 +26,7 @@ import { useEffect, useState } from 'react';
 
 interface NameCardWithImage extends NameCard {
     image_path?: string;
-    image_url?: string;
+    image_url?: string | null;
     has_image?: boolean;
 }
 

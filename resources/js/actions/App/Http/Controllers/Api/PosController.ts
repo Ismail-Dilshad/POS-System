@@ -93,7 +93,7 @@ getAllProductsCache.form = getAllProductsCacheForm
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode'
 */
 const searchByBarcodefa34172da5383d509ed3b499b19101db = (queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -108,7 +108,7 @@ searchByBarcodefa34172da5383d509ed3b499b19101db.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode'
 */
 searchByBarcodefa34172da5383d509ed3b499b19101db.url = (queryOptions?: RouteQueryOptions) => {
@@ -122,7 +122,7 @@ searchByBarcodefa34172da5383d509ed3b499b19101db.url = (queryOptions?: RouteQuery
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode'
 */
 searchByBarcodefa34172da5383d509ed3b499b19101db.get = (queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -132,7 +132,7 @@ searchByBarcodefa34172da5383d509ed3b499b19101db.get = (queryOptions?: RouteQuery
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode'
 */
 searchByBarcodefa34172da5383d509ed3b499b19101db.head = (queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -142,7 +142,7 @@ searchByBarcodefa34172da5383d509ed3b499b19101db.head = (queryOptions?: RouteQuer
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode'
 */
 const searchByBarcodefa34172da5383d509ed3b499b19101dbForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -155,7 +155,7 @@ const searchByBarcodefa34172da5383d509ed3b499b19101dbForm = (queryOptions?: Rout
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode'
 */
 searchByBarcodefa34172da5383d509ed3b499b19101dbForm.get = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -168,7 +168,7 @@ searchByBarcodefa34172da5383d509ed3b499b19101dbForm.get = (queryOptions?: RouteQ
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode'
 */
 searchByBarcodefa34172da5383d509ed3b499b19101dbForm.head = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -184,7 +184,7 @@ searchByBarcodefa34172da5383d509ed3b499b19101dbForm.head = (queryOptions?: Route
 searchByBarcodefa34172da5383d509ed3b499b19101db.form = searchByBarcodefa34172da5383d509ed3b499b19101dbForm
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode/{barcode}'
 */
 const searchByBarcode5e76f96007165e7b05def972081cc854 = (args: { barcode: string | number } | [barcode: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -199,7 +199,7 @@ searchByBarcode5e76f96007165e7b05def972081cc854.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode/{barcode}'
 */
 searchByBarcode5e76f96007165e7b05def972081cc854.url = (args: { barcode: string | number } | [barcode: string | number ] | string | number, queryOptions?: RouteQueryOptions) => {
@@ -229,7 +229,7 @@ searchByBarcode5e76f96007165e7b05def972081cc854.url = (args: { barcode: string |
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode/{barcode}'
 */
 searchByBarcode5e76f96007165e7b05def972081cc854.get = (args: { barcode: string | number } | [barcode: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -239,7 +239,7 @@ searchByBarcode5e76f96007165e7b05def972081cc854.get = (args: { barcode: string |
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode/{barcode}'
 */
 searchByBarcode5e76f96007165e7b05def972081cc854.head = (args: { barcode: string | number } | [barcode: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -249,7 +249,7 @@ searchByBarcode5e76f96007165e7b05def972081cc854.head = (args: { barcode: string 
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode/{barcode}'
 */
 const searchByBarcode5e76f96007165e7b05def972081cc854Form = (args: { barcode: string | number } | [barcode: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -262,7 +262,7 @@ const searchByBarcode5e76f96007165e7b05def972081cc854Form = (args: { barcode: st
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode/{barcode}'
 */
 searchByBarcode5e76f96007165e7b05def972081cc854Form.get = (args: { barcode: string | number } | [barcode: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -275,7 +275,7 @@ searchByBarcode5e76f96007165e7b05def972081cc854Form.get = (args: { barcode: stri
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByBarcode
-* @see app/Http/Controllers/Api/PosController.php:70
+* @see app/Http/Controllers/Api/PosController.php:71
 * @route '/api/pos/search-barcode/{barcode}'
 */
 searchByBarcode5e76f96007165e7b05def972081cc854Form.head = (args: { barcode: string | number } | [barcode: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -298,7 +298,7 @@ export const searchByBarcode = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name'
 */
 const searchByName8854bfa2ce14899db881251fedf61b5c = (queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -313,7 +313,7 @@ searchByName8854bfa2ce14899db881251fedf61b5c.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name'
 */
 searchByName8854bfa2ce14899db881251fedf61b5c.url = (queryOptions?: RouteQueryOptions) => {
@@ -327,7 +327,7 @@ searchByName8854bfa2ce14899db881251fedf61b5c.url = (queryOptions?: RouteQueryOpt
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name'
 */
 searchByName8854bfa2ce14899db881251fedf61b5c.get = (queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -337,7 +337,7 @@ searchByName8854bfa2ce14899db881251fedf61b5c.get = (queryOptions?: RouteQueryOpt
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name'
 */
 searchByName8854bfa2ce14899db881251fedf61b5c.head = (queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -347,7 +347,7 @@ searchByName8854bfa2ce14899db881251fedf61b5c.head = (queryOptions?: RouteQueryOp
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name'
 */
 const searchByName8854bfa2ce14899db881251fedf61b5cForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -360,7 +360,7 @@ const searchByName8854bfa2ce14899db881251fedf61b5cForm = (queryOptions?: RouteQu
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name'
 */
 searchByName8854bfa2ce14899db881251fedf61b5cForm.get = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -373,7 +373,7 @@ searchByName8854bfa2ce14899db881251fedf61b5cForm.get = (queryOptions?: RouteQuer
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name'
 */
 searchByName8854bfa2ce14899db881251fedf61b5cForm.head = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -389,7 +389,7 @@ searchByName8854bfa2ce14899db881251fedf61b5cForm.head = (queryOptions?: RouteQue
 searchByName8854bfa2ce14899db881251fedf61b5c.form = searchByName8854bfa2ce14899db881251fedf61b5cForm
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name/{name}'
 */
 const searchByName11b9b8639d415507163f1558493bbb2a = (args: { name: string | number } | [name: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -404,7 +404,7 @@ searchByName11b9b8639d415507163f1558493bbb2a.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name/{name}'
 */
 searchByName11b9b8639d415507163f1558493bbb2a.url = (args: { name: string | number } | [name: string | number ] | string | number, queryOptions?: RouteQueryOptions) => {
@@ -434,7 +434,7 @@ searchByName11b9b8639d415507163f1558493bbb2a.url = (args: { name: string | numbe
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name/{name}'
 */
 searchByName11b9b8639d415507163f1558493bbb2a.get = (args: { name: string | number } | [name: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -444,7 +444,7 @@ searchByName11b9b8639d415507163f1558493bbb2a.get = (args: { name: string | numbe
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name/{name}'
 */
 searchByName11b9b8639d415507163f1558493bbb2a.head = (args: { name: string | number } | [name: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -454,7 +454,7 @@ searchByName11b9b8639d415507163f1558493bbb2a.head = (args: { name: string | numb
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name/{name}'
 */
 const searchByName11b9b8639d415507163f1558493bbb2aForm = (args: { name: string | number } | [name: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -467,7 +467,7 @@ const searchByName11b9b8639d415507163f1558493bbb2aForm = (args: { name: string |
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name/{name}'
 */
 searchByName11b9b8639d415507163f1558493bbb2aForm.get = (args: { name: string | number } | [name: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -480,7 +480,7 @@ searchByName11b9b8639d415507163f1558493bbb2aForm.get = (args: { name: string | n
 
 /**
 * @see \App\Http\Controllers\Api\PosController::searchByName
-* @see app/Http/Controllers/Api/PosController.php:117
+* @see app/Http/Controllers/Api/PosController.php:118
 * @route '/api/pos/search-name/{name}'
 */
 searchByName11b9b8639d415507163f1558493bbb2aForm.head = (args: { name: string | number } | [name: string | number ] | string | number, queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -503,7 +503,7 @@ export const searchByName = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::cacheStats
-* @see app/Http/Controllers/Api/PosController.php:230
+* @see app/Http/Controllers/Api/PosController.php:231
 * @route '/api/pos/cache-stats'
 */
 export const cacheStats = (queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -518,7 +518,7 @@ cacheStats.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::cacheStats
-* @see app/Http/Controllers/Api/PosController.php:230
+* @see app/Http/Controllers/Api/PosController.php:231
 * @route '/api/pos/cache-stats'
 */
 cacheStats.url = (queryOptions?: RouteQueryOptions) => {
@@ -532,7 +532,7 @@ cacheStats.url = (queryOptions?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::cacheStats
-* @see app/Http/Controllers/Api/PosController.php:230
+* @see app/Http/Controllers/Api/PosController.php:231
 * @route '/api/pos/cache-stats'
 */
 cacheStats.get = (queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => ({
@@ -542,7 +542,7 @@ cacheStats.get = (queryOptions?: RouteQueryOptions): RouteDefinition<'get'> => (
 
 /**
 * @see \App\Http\Controllers\Api\PosController::cacheStats
-* @see app/Http/Controllers/Api/PosController.php:230
+* @see app/Http/Controllers/Api/PosController.php:231
 * @route '/api/pos/cache-stats'
 */
 cacheStats.head = (queryOptions?: RouteQueryOptions): RouteDefinition<'head'> => ({
@@ -552,7 +552,7 @@ cacheStats.head = (queryOptions?: RouteQueryOptions): RouteDefinition<'head'> =>
 
 /**
 * @see \App\Http\Controllers\Api\PosController::cacheStats
-* @see app/Http/Controllers/Api/PosController.php:230
+* @see app/Http/Controllers/Api/PosController.php:231
 * @route '/api/pos/cache-stats'
 */
 const cacheStatsForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -565,7 +565,7 @@ const cacheStatsForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'
 
 /**
 * @see \App\Http\Controllers\Api\PosController::cacheStats
-* @see app/Http/Controllers/Api/PosController.php:230
+* @see app/Http/Controllers/Api/PosController.php:231
 * @route '/api/pos/cache-stats'
 */
 cacheStatsForm.get = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -578,7 +578,7 @@ cacheStatsForm.get = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'ge
 
 /**
 * @see \App\Http\Controllers\Api\PosController::cacheStats
-* @see app/Http/Controllers/Api/PosController.php:230
+* @see app/Http/Controllers/Api/PosController.php:231
 * @route '/api/pos/cache-stats'
 */
 cacheStatsForm.head = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'get'> => ({
@@ -595,7 +595,7 @@ cacheStats.form = cacheStatsForm
 
 /**
 * @see \App\Http\Controllers\Api\PosController::rebuildCache
-* @see app/Http/Controllers/Api/PosController.php:164
+* @see app/Http/Controllers/Api/PosController.php:165
 * @route '/api/pos/rebuild-cache'
 */
 export const rebuildCache = (queryOptions?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -610,7 +610,7 @@ rebuildCache.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::rebuildCache
-* @see app/Http/Controllers/Api/PosController.php:164
+* @see app/Http/Controllers/Api/PosController.php:165
 * @route '/api/pos/rebuild-cache'
 */
 rebuildCache.url = (queryOptions?: RouteQueryOptions) => {
@@ -624,7 +624,7 @@ rebuildCache.url = (queryOptions?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::rebuildCache
-* @see app/Http/Controllers/Api/PosController.php:164
+* @see app/Http/Controllers/Api/PosController.php:165
 * @route '/api/pos/rebuild-cache'
 */
 rebuildCache.post = (queryOptions?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -634,7 +634,7 @@ rebuildCache.post = (queryOptions?: RouteQueryOptions): RouteDefinition<'post'> 
 
 /**
 * @see \App\Http\Controllers\Api\PosController::rebuildCache
-* @see app/Http/Controllers/Api/PosController.php:164
+* @see app/Http/Controllers/Api/PosController.php:165
 * @route '/api/pos/rebuild-cache'
 */
 const rebuildCacheForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -647,7 +647,7 @@ const rebuildCacheForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition
 
 /**
 * @see \App\Http\Controllers\Api\PosController::rebuildCache
-* @see app/Http/Controllers/Api/PosController.php:164
+* @see app/Http/Controllers/Api/PosController.php:165
 * @route '/api/pos/rebuild-cache'
 */
 rebuildCacheForm.post = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -662,7 +662,7 @@ rebuildCache.form = rebuildCacheForm
 
 /**
 * @see \App\Http\Controllers\Api\PosController::clearCache
-* @see app/Http/Controllers/Api/PosController.php:252
+* @see app/Http/Controllers/Api/PosController.php:253
 * @route '/api/pos/clear-cache'
 */
 export const clearCache = (queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -677,7 +677,7 @@ clearCache.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::clearCache
-* @see app/Http/Controllers/Api/PosController.php:252
+* @see app/Http/Controllers/Api/PosController.php:253
 * @route '/api/pos/clear-cache'
 */
 clearCache.url = (queryOptions?: RouteQueryOptions) => {
@@ -691,7 +691,7 @@ clearCache.url = (queryOptions?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::clearCache
-* @see app/Http/Controllers/Api/PosController.php:252
+* @see app/Http/Controllers/Api/PosController.php:253
 * @route '/api/pos/clear-cache'
 */
 clearCache.delete = (queryOptions?: RouteQueryOptions): RouteDefinition<'delete'> => ({
@@ -701,7 +701,7 @@ clearCache.delete = (queryOptions?: RouteQueryOptions): RouteDefinition<'delete'
 
 /**
 * @see \App\Http\Controllers\Api\PosController::clearCache
-* @see app/Http/Controllers/Api/PosController.php:252
+* @see app/Http/Controllers/Api/PosController.php:253
 * @route '/api/pos/clear-cache'
 */
 const clearCacheForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -716,7 +716,7 @@ const clearCacheForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'
 
 /**
 * @see \App\Http\Controllers\Api\PosController::clearCache
-* @see app/Http/Controllers/Api/PosController.php:252
+* @see app/Http/Controllers/Api/PosController.php:253
 * @route '/api/pos/clear-cache'
 */
 clearCacheForm.delete = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -733,7 +733,7 @@ clearCache.form = clearCacheForm
 
 /**
 * @see \App\Http\Controllers\Api\PosController::refreshCache
-* @see app/Http/Controllers/Api/PosController.php:192
+* @see app/Http/Controllers/Api/PosController.php:193
 * @route '/api/pos/refresh-cache'
 */
 export const refreshCache = (queryOptions?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -748,7 +748,7 @@ refreshCache.definition = {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::refreshCache
-* @see app/Http/Controllers/Api/PosController.php:192
+* @see app/Http/Controllers/Api/PosController.php:193
 * @route '/api/pos/refresh-cache'
 */
 refreshCache.url = (queryOptions?: RouteQueryOptions) => {
@@ -762,7 +762,7 @@ refreshCache.url = (queryOptions?: RouteQueryOptions) => {
 
 /**
 * @see \App\Http\Controllers\Api\PosController::refreshCache
-* @see app/Http/Controllers/Api/PosController.php:192
+* @see app/Http/Controllers/Api/PosController.php:193
 * @route '/api/pos/refresh-cache'
 */
 refreshCache.post = (queryOptions?: RouteQueryOptions): RouteDefinition<'post'> => ({
@@ -772,7 +772,7 @@ refreshCache.post = (queryOptions?: RouteQueryOptions): RouteDefinition<'post'> 
 
 /**
 * @see \App\Http\Controllers\Api\PosController::refreshCache
-* @see app/Http/Controllers/Api/PosController.php:192
+* @see app/Http/Controllers/Api/PosController.php:193
 * @route '/api/pos/refresh-cache'
 */
 const refreshCacheForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({
@@ -785,7 +785,7 @@ const refreshCacheForm = (queryOptions?: RouteQueryOptions): RouteFormDefinition
 
 /**
 * @see \App\Http\Controllers\Api\PosController::refreshCache
-* @see app/Http/Controllers/Api/PosController.php:192
+* @see app/Http/Controllers/Api/PosController.php:193
 * @route '/api/pos/refresh-cache'
 */
 refreshCacheForm.post = (queryOptions?: RouteQueryOptions): RouteFormDefinition<'post'> => ({

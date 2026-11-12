@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { useTranslation } from '@/hooks/use-translation';
+import { ImagePlus } from 'lucide-react';
 import { useEffect, useId, useRef, useState } from 'react';
 
 interface ItemImageFieldProps {
@@ -9,6 +10,7 @@ interface ItemImageFieldProps {
     existingUrl?: string | null;
     remove: boolean;
     disabled?: boolean;
+    compact?: boolean;
     onChange: (file: File | null, remove: boolean) => void;
 }
 
@@ -17,6 +19,7 @@ export function ItemImageField({
     existingUrl,
     remove,
     disabled,
+    compact = false,
     onChange,
 }: ItemImageFieldProps) {
     const { t } = useTranslation();
@@ -35,18 +38,23 @@ export function ItemImageField({
     }, [value]);
     const url = preview || (!remove ? existingUrl : null);
     return (
-        <div className="space-y-2">
-            <Label htmlFor={id}>{t('item_images.label')}</Label>
+        <div className={compact ? 'space-y-3 rounded-xl border bg-muted/20 p-4' : 'space-y-2'}>
+            <Label htmlFor={id} className={compact ? 'text-base font-semibold' : undefined}>{t('item_images.label')}</Label>
             <p id={`${id}-help`} className="text-sm text-muted-foreground">
-                {t('item_images.help')}
+                {compact ? 'JPG / PNG / WebP · 2 MB' : t('item_images.help')}
             </p>
-            <div className="flex flex-wrap items-center gap-3">
+            <div className={compact ? 'flex flex-col gap-3' : 'flex flex-wrap items-center gap-3'}>
                 {url && (
                     <img
                         src={url}
                         alt={t('item_images.preview')}
-                        className="size-20 rounded-md border object-contain"
+                        className={compact ? 'h-32 w-full rounded-lg border bg-background object-contain' : 'size-20 rounded-md border object-contain'}
                     />
+                )}
+                {compact && !url && (
+                    <div className="flex h-32 w-full items-center justify-center rounded-lg border border-dashed bg-background">
+                        <ImagePlus className="size-9 text-muted-foreground" aria-label={t('item_images.empty')} />
+                    </div>
                 )}
                 <Input
                     ref={input}
@@ -54,7 +62,7 @@ export function ItemImageField({
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
                     disabled={disabled}
-                    className="max-w-sm"
+                    className={compact ? 'sr-only' : 'max-w-sm'}
                     aria-describedby={`${id}-help`}
                     aria-invalid={!!error}
                     onChange={(event) => {
@@ -74,11 +82,18 @@ export function ItemImageField({
                         onChange(file, false);
                     }}
                 />
+                {compact && (
+                    <Button type="button" variant="outline" disabled={disabled} className="h-11 w-full text-base" onClick={() => input.current?.click()}>
+                        <ImagePlus className="mr-2 size-4" />
+                        {t('common.select')}
+                    </Button>
+                )}
                 {url && (
                     <Button
                         type="button"
                         variant="outline"
                         disabled={disabled}
+                        className={compact ? 'h-11 w-full text-base' : undefined}
                         onClick={() => {
                             onChange(null, true);
                             setError(null);

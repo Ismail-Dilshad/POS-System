@@ -1,5 +1,6 @@
 import { forwardRef, useImperativeHandle, useMemo, useRef, useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { ItemThumbnail } from '@/components/layout/item-thumbnail';
 import { Input } from '@/components/ui/input';
 import { Kbd } from '@/components/ui/kbd';
 import { useTranslation } from '@/hooks/use-translation';
@@ -287,11 +288,13 @@ export const CashierShoppingCart = forwardRef<
                                     </Button>
                                     <div className="flex items-center gap-3">
                                         {/* Product Icon */}
-                                        <div
+                                        {item.image_url ? (
+                                            <ItemThumbnail url={item.image_url} name={item.name} />
+                                        ) : (<div
                                             className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-lg ${typeStyle.bgGradient} ${typeStyle.iconColor} shadow-sm`}
                                         >
                                             <Icon className="h-5 w-5" />
-                                        </div>
+                                        </div>)}
 
                                         {/* Product Info */}
                                         <div className="flex-1 min-w-0">
